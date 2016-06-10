@@ -12,4 +12,3 @@ ToDo:
 - create agency api endpoint, GET, POST, PATCH, DELETE.
 - create service api endpoint,GET, POST, PATCH, DELETE.
 - Research using the Swagger for API discover
-- 
