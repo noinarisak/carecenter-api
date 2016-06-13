@@ -1,15 +1,24 @@
 var express = require('express'),
     mongoose = require('mongoose'),
+    dotenv = require('dotenv'),
     bodyParser = require('body-parser');
 
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({ path: '.env.example' });
 
 var db;
 if (process.env.ENV == 'Test') {
-    db = mongoose.connect('mongodb://noinarisak-carecenterdb-webservice-3148390/bookAPI_Test');
+    db = mongoose.connect(process.env.MONGODB_URI_TEST);
 }
 else {
-    db = mongoose.connect('mongodb://noinarisak-carecenterdb-webservice-3148390/bookAPI');
+    db = mongoose.connect(process.env.MONGODB_URI);
 }
+mongoose.connection.on('error', () => {
+  console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  process.exit(1);
+});
 
 var Book = require('./models/bookModel');
 
