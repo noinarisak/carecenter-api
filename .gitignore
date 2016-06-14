@@ -65,3 +65,9 @@ tags
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+
+
+### CareCenter API ###
+
+# prevent the committing evironmental configuration value to GIT.
+.env.api
