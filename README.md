@@ -50,6 +50,9 @@ $ gulp test
 
 Happy hacking!
 
+## License
+
+See the [LICENSE]() for the more information about the [Unlicense.org](http://unlicense.org) legal terms.
 --
 ### ToDo:
 - ~~move the PATCH and PUT code block into the Controller.js~~
