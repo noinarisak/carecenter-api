@@ -15,7 +15,14 @@ Once installed run.
 ```
 $ mongodbctl
 ```
-Locate the 'host=' in the output and update the environment variable `MONGODB_URI` and `MONGODB_URI_TEST` in `.env.example` file.
+Locate the 'host=' in the output and copy into our clipboard.
+
+Copy `.env.example` as `.env.api` file.
+```
+$ cp .env.example .env.api
+```
+
+Update the environment variable `MONGODB_URI` and `MONGODB_URI_TEST` in `.env.api` file.
 
 *EXAMPLE:*
 
@@ -25,7 +32,7 @@ MONGODB_URI=mongodb://noinarisak-carecenterapi-3342810/bookAPI
 ```
 to
 ```
-MONGODB_URI=mongodb://{OUTPUT_FROM_MONGODBCTL_PASTE_HERE}/bookAPI
+MONGODB_URI=mongodb://{HOST_OUTPUT_FROM_MONGODBCTL_PASTE_HERE}/bookAPI
 ```
 
 ## Usage
