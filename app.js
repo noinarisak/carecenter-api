@@ -28,6 +28,7 @@ mongoose.connection.on('error', () => {
  */
 var app = express();
 var port = process.env.PORT || 3000;
+var ip_address = process.env.IP || "0.0.0.0";
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
@@ -51,9 +52,8 @@ app.get('/', function(req, res) {
    res.send('Welcome to my API.');
 });
 
-
-app.listen(port, function() {
-    console.log('Now it changed to something else. Running on PORT:' + port);
+app.listen(port, ip_address, function(){
+  console.log('Now it changed to something else. Running on IP:'  + ip_address + ':' + port);
 });
 
 module.exports = app;
