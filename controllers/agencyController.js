@@ -8,62 +8,39 @@ var agencyController = function(Agency, Service) {
         }
         else {
             
-            
             //TODO: Entire approach has to be looked at. Does not make sense if we tring POST both Agency and Services objects. 
             // wondering best practices for REST call with joins/relations between two items.
             agency.save(function(err){
                 if (err) return console.error(err);
-                
-                // var service1 = new Service(
-                //     {
-                //         name:'Drug Program',
-                //         description:'Drug prevention for addicts',
-                //         _agency: agency.m_id
-                //     });
-                
-                // console.log('--');
-                // console.log(JSON.stringify(service1, null, "\t"));
-                
-                // service1.save(function (err) {
-                //     if (err) return console.error(err);
-                //     service1.find({})
-                //         .populate('_agency')
-                //         .exec(function(error, service) {
-                //             console.log(JSON.stringify(service, null, "\t"))
-                //         })
-                        
-                //     console.log('service1.save() success!');
-                // });
-                
             });
             
-            var service1 = new Service(
-                {
-                    name:'Drug Program',
-                    description:'Drug prevention for addicts',
-                    _agency: agency.m_id
-                });
+            // var service1 = new Service(
+            //     {
+            //         name:'Drug Program',
+            //         description:'Drug prevention for addicts',
+            //         _agency: agency.m_id
+            //     });
                 
-            console.log('--');
-            console.log(JSON.stringify(service1, null, "\t"));
+            // console.log('--');
+            // console.log(JSON.stringify(service1, null, "\t"));
             
-            service1.save(function (err) {
-                if (err) return console.error(err);
-                // TODO: the order of the find is not correct. It might be the other way around.
-                service1.find({})
-                    .populate('_agency')
-                    .exec(function(error, service) {
-                        console.log('service1.exec()');
-                        console.log(JSON.stringify(service, null, "\t"));
-                    });
+            // service1.save(function (err) {
+            //     if (err) return console.error(err);
+            //     // TODO: the order of the find is not correct. It might be the other way around.
+            //     service1.find({})
+            //         .populate('_agency')
+            //         .exec(function(error, service) {
+            //             console.log('service1.exec()');
+            //             console.log(JSON.stringify(service, null, "\t"));
+            //         });
                     
-                console.log('service1.save() success!');
-            });
+            //     console.log('service1.save() success!');
+            // });
             
-            agency.services.push(service1);
-            agency.save(function(err) {
-                if (err) return console.error(err);
-            });
+            // agency.services.push(service1);
+            // agency.save(function(err) {
+            //     if (err) return console.error(err);
+            // });
             
             res.status(201);
             res.send(agency);
