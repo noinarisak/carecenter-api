@@ -49,11 +49,15 @@ app.use('/api/agencys', agencyRouter);
  * Handle the root GET call
  */
 app.get('/', function(req, res) {
-   res.send('Welcome to my API.');
+    var message = { "application" : process.env.APP_NAME,
+                    "version" : process.env.APP_VERSION, 
+                    "status" : "OK"}
+                    
+    res.send(200, message);
 });
 
 app.listen(port, ip_address, function(){
-  console.log('Now it changed to something else. Running on IP:'  + ip_address + ':' + port);
+    console.log('Now it changed to something else. Running on IP:'  + ip_address + ':' + port);
 });
 
 module.exports = app;
