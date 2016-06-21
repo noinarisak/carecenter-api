@@ -25,40 +25,43 @@ describe('Agency Crud Test', function(){
         done();
     })
     
-    // it('POST /agency', function(done){
-    //     agent.post('/api/agencys')
-    //         .send(agencyPost)
-    //         .expect(201)
-    //         .end(function(err, results){
-    //             if (err) return console.error('POST /agency ' + err);
-    //             results.body.m_id.should.equal(0);
-    //             results.body.should.have.property('description').which.is.a.String();
-    //             results.body.should.have.property('_id');
+    it('POST /agency', function(done){
+        agent.post('/api/agencys')
+            .send(agencyPost)
+            .expect(201)
+            .end(function(err, results){
+                if (err) return console.error('POST /agency (%s)', err);
+                results.body.m_id.should.equal(0);
+                results.body.should.have.property('description').which.is.a.String();
+                results.body.should.have.property('_id');
+                results.body.should.have.property('services').which.is.a.Array();
+                agencyId = results.body._id;
                
-    //             // console.log(results.body);
-    //             done();
-    //         })
-           
-    // })
+                // console.log(results.body);
+                done();
+            })
+    })
       
-    // it('GET /agencys/:agencyId', function(done) {
-    //     console.log('GET: ' + agencyId);
+    it('GET /agencys/:agencyId', function(done) {
+        if (!agencyId) return console.error("agencyId is %s", "Empty or Nil");
         
-    //     agent.get('/api/agencys/' + agencyId)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             // todo: Update the inline json for Agency Schema
-    //             results.body._id.should.be.equal(agencyId);
-    //             results.body.genre.should.equal('Fiction');
-    //             results.body.title.should.equal('New Book');
-    //             results.body.author.should.equal('Noi');
+        agent.get('/api/agencys/' + agencyId)
+            .expect(200)
+            .end(function(err, results){
+                if (err) return console.error('GET /agencys/:agencyId (%s)', err);
+                results.body._id.should.be.equal(agencyId);
+                results.body.m_id.should.equal(0);
+                results.body.should.have.property('name').which.is.a.String();
+                results.body.name.should.equal(agencyPost.name);
+                results.body.should.have.property('description').which.is.a.String();
+                results.body.description.should.equal(agencyPost.description);
+                results.body.should.have.property('_id');
+                results.body.should.have.property('services').which.is.a.Array();
                 
-    //             // results.body.should.be.instanceof(Array);
-                
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
+                // console.log(results.body);
+                done();
+            })
+    })
     
     // it('GET /agencys/?genre=', function(done) {
     //     agent.get('/api/agencys/?genre=Fiction')
