@@ -50,7 +50,7 @@ $ gulp test
 
 Happy hacking!
 
-## Tips
+## Tips / Issue / Recommendation
 
 ### Debugging in c9.io
 
@@ -69,6 +69,10 @@ If `gulp test` silently fails, it means another gulp process is running and it h
 ```
 $ kill -9 $(ps -a | grep 'gulp' | awk '{print $1}')
 ```
+
+### Simpler git/github version model approach to follow.
+1. Read jbenet [gist](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
+
 
 ## License
 
