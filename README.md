@@ -70,21 +70,10 @@ If `gulp test` silently fails, it means another gulp process is running and it h
 $ kill -9 $(ps -a | grep 'gulp' | awk '{print $1}')
 ```
 
-### Simpler git/github version model approach to follow.
+### Simpler git/github versioning model approach to follow.
 1. Read jbenet [gist](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
 
 
 ## License
 
-See the [LICENSE]() for the more information about the [Unlicense.org](http://unlicense.org) legal terms.
---
-### ToDo:
-- ~~move the PATCH and PUT code block into the Controller.js~~
-- ~~commit the to repo with the Book example.~~
-- create makefile for mongod start and stop
-- create makefile for 'gulp'
-- create makefile for 'gulp test'
-- ~~refactor app.js to handle mongod connection better.~~
-- create agency api endpoint, GET, POST, PATCH, DELETE.
-- create service api endpoint,GET, POST, PATCH, DELETE.
-- Research Swagger for API discover
+See the [LICENSE](https://github.com/noinarisak/carecenter-api/blob/master/LICENSE) for the more information about the [Unlicense.org](http://unlicense.org) legal terms.
