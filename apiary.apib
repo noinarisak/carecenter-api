@@ -1,0 +1,154 @@
+FORMAT: 1A
+HOST: http://carecenter.apiblueprint.org/
+
+# Care Center API
+Care Center is a simple API allowing consumers to search for non-profit organizations and services.
+
+# Authentication
+## Authentication
+Currently the *Care Center API* does not provide authenticated access.
+
+<!--## Media Types-->
+<!--Where applicable this API uses the [HAL+JSON](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md) media-type to represent resources states and affordances.-->
+
+
+<!--Requests with a message-body are using plain JSON to set or update resource states.-->
+
+## Error States
+The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md) are used.
+
+# Group Organizations
+Organizations-related resources of *Care Center API*.
+
+## Organizations Collection [/organizatons]
+
+### List All Organizations [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": 1,
+                "name": "Evanston Vineyard",
+                "description": "Description about Evanston Vineyard",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true,
+                "services": [
+                    {
+                        "name": "Clothes",
+                        "descripton": "Details"
+                    }, {
+                        "name": "Food Pantry",
+                        "descripton": "Details"
+                    }, {
+                        "name": "Bible Study",
+                        "descripton": "Details"
+                    }, {
+                        "name": "Youth Intervention",
+                        "descripton": "Details"
+                    }
+                ]
+            },
+            {
+                "_id": 2,
+                "name": "Nicasa Mental Help",
+                "description": "Description about Nicasa Mental Help",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true,
+                "services": [
+                    {
+                        "name": "Clothes",
+                        "descripton": "Details"
+                    }, {
+                        "name": "AAA Support",
+                        "descripton": "Details"
+                    }, {
+                        "name": "Youth Intervention",
+                        "descripton": "Details"
+                    }
+                ]
+            },
+            {
+                "_id": 3,
+                "name": "New Mom's Inc",
+                "description": "Description about New Mom's Inc",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true,
+                "services": [
+                    {
+                        "name": "Baby sitter",
+                        "descripton": "Details"
+                    }, {
+                        "name": "Young Mother Training",
+                        "descripton": "Details"
+                    }, {
+                        "name": "GED preparation",
+                        "descripton": "Details"
+                    }
+                ]
+            }
+        ]
+
+### Create a New Organization [POST]
+
+You may create your own organization using this action. It takes a JSON
+object containing a organization and a collection of services in the
+form of services offered.
+
++ Request (application/json)
+    
+    + Headers
+
+            Location: /organization
+    
+    + Body
+    
+            {
+                "name": "American Red Cross",
+                "description": "Description about American Red Cross",
+                "services": [
+                    {
+                        "name": "Giving Blood",
+                        "description": ""
+                    },
+                    {
+                        "name": "Giving Money",
+                        "description": ""
+                    }
+                ]
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /organizations/4
+
+    + Body
+
+            {
+                "_id" = 4,
+                "name": "American Red Cross",
+                "description": "Description about American Red Cross"
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true,
+                "services": [
+                    {
+                        "name": "Giving Blood",
+                        "description": ""
+                    },
+                    {
+                        "name": "Giving Money",
+                        "description": ""
+                    }
+                ]
+            }
+            
+# Group Services
+Services-related resources of *Care Center API*.
+
+# Group Tags
+Tags-related resources of *Care Center API*.
