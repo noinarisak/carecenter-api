@@ -66,6 +66,8 @@ tags
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+### c9.io Workspace ###
+/.c9/
 
 ### CareCenter API ###
 
