@@ -73,7 +73,6 @@ $ kill -9 $(ps -a | grep 'gulp' | awk '{print $1}')
 ### Simpler git/github versioning model approach to follow.
 1. Read jbenet [gist](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
 
-
 ## License
 
 See the [LICENSE](https://github.com/noinarisak/carecenter-api/blob/master/LICENSE) for the more information about the [Unlicense.org](http://unlicense.org) legal terms.
