@@ -65,7 +65,8 @@ Debugging in c9.io with this project. Since we are not using the default templat
 
 ### Issues with `gulp test`
 
-If `gulp test` silently fails, it means another gulp process is running and it has to be killed. Execute the following get back to testing.
+If `gulp test` silently fails, it means another gulp process is running and it has to be killed. Execute the following to resolve the issue.
+
 ```
 $ kill -9 $(ps -a | grep 'gulp' | awk '{print $1}')
 ```
