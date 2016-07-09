@@ -39,10 +39,10 @@ var Book = require('./models/bookModel');
 var bookRouter = require('./routes/bookRoutes')(Book);
 app.use('/api/books', bookRouter);
 
-var Agency = require('./models/agencyModel');
+var Organization = require('./models/organizationModel');
 var Service = require('./models/serviceModel');
-var agencyRouter = require('./routes/agencyRoutes')(Agency, Service);
-app.use('/api/agencys', agencyRouter);
+var organizationRouter = require('./routes/organizationRoutes')(Organization, Service);
+app.use('/api/organizations', organizationRouter);
 
 
 /**
