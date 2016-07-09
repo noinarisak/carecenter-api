@@ -27,7 +27,7 @@ Organizations-related resources of *Care Center API*.
 
         [
             {
-                "_id": 1,
+                "m_id": 1,
                 "name": "Evanston Vineyard",
                 "description": "Description about Evanston Vineyard",
                 "created_at": "2015-08-05T08:40:51.620Z",
@@ -47,10 +47,15 @@ Organizations-related resources of *Care Center API*.
                         "name": "Youth Intervention",
                         "descripton": "Details"
                     }
+                ],
+                "tags": [
+                    "food",
+                    "youth-course",
+                    "clothing"
                 ]
             },
             {
-                "_id": 2,
+                "m_id": 2,
                 "name": "Nicasa Mental Help",
                 "description": "Description about Nicasa Mental Help",
                 "created_at": "2015-08-05T08:40:51.620Z",
@@ -67,10 +72,15 @@ Organizations-related resources of *Care Center API*.
                         "name": "Youth Intervention",
                         "descripton": "Details"
                     }
+                ],
+                "tags": [
+                    "AAA",
+                    "youth-course",
+                    "clothing"
                 ]
             },
             {
-                "_id": 3,
+                "m_id": 3,
                 "name": "New Mom's Inc",
                 "description": "Description about New Mom's Inc",
                 "created_at": "2015-08-05T08:40:51.620Z",
@@ -87,6 +97,12 @@ Organizations-related resources of *Care Center API*.
                         "name": "GED preparation",
                         "descripton": "Details"
                     }
+                ],
+                "tags": [
+                    "baby-services",
+                    "youth-course",
+                    "clothing",
+                    "training"
                 ]
             }
         ]
@@ -117,6 +133,11 @@ form of services offered.
                         "name": "Giving Money",
                         "description": ""
                     }
+                ],
+                "tags": [
+                    "blood-drive",
+                    "philanthropy",
+                    "clothing"
                 ]
             }
 
@@ -129,7 +150,7 @@ form of services offered.
     + Body
 
             {
-                "_id" = 4,
+                "m_id" = 4,
                 "name": "American Red Cross",
                 "description": "Description about American Red Cross"
                 "created_at": "2015-08-05T08:40:51.620Z",
@@ -144,11 +165,185 @@ form of services offered.
                         "name": "Giving Money",
                         "description": ""
                     }
+                ],
+                "tags": [
+                    "blood-drive",
+                    "philanthropy",
+                    "clothing"
                 ]
             }
+
+### Retrieve a Single Organization [GET]
+
+To do: Description of a GET call.
+
++ Request (application/json)
+    + Headers
+
+            Location: /organization/2
+    
+    + Body
+    
+            {
+                "message": "to do"
+            }  
             
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /organization/2
+    
+    + Body  
+
+            {
+                "message": "to do"
+            }
+
+### Update a Organization [PUT]
+
+To do: Description of a PUT call.
+
++ Request (application/json)
+    
+    + Headers
+
+            Location: /organization/2
+    
+    + Body
+    
+            {
+                "message": "to do"
+            }  
+            
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /organization/2
+    
+    + Body  
+
+            {
+                "message": "to do"
+            }
+
+### Delete a Organization [DELETE]
+
+To do: Description of a DELETE call.
+
++ Request (application/json)
+    
+    + Headers
+
+            Location: /organization/2
+    
+    + Body
+    
+            {
+                "message": "to do"
+            }  
+            
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /organization/2
+    
+    + Body  
+
+            {
+                "message": "to do"
+            }
+
 # Group Services
 Services-related resources of *Care Center API*.
 
+## Services Collections [/services]
+
+### List All Services [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "m_id": 1,
+                "name": "Clothes",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            }, 
+            {
+                "m_id": 2,
+                "name": "Food Pantry",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            }, 
+            {
+                "m_id": 3,
+                "name": "Bible Study",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            }, 
+            {
+                "m_id": 4,
+                "name": "Youth Intervention",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            },
+            {
+                "m_id": 5,
+                "name": "Young Mother Training",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            }, 
+            {
+                "m_id": 6,
+                "name": "GED preparation",
+                "descripton": "Details",
+                "created_at": "2015-08-05T08:40:51.620Z",
+                "updated_at": "2015-08-05T08:40:51.620Z",
+                "enabled": true
+            }
+        ]
+
+### Create a New Services [POST]
+
+You may create your own Services using this action. It takes a JSON
+object containing a service.
+
++ Request (application/json)
+    
+    + Headers
+
+            Location: /services
+    
+    + Body
+    
+            {
+                "name": "Job Assistants",
+                "description": "Details"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /services/2
+
+    + Body
+
+            {
+               "message": "not implemented"
+            }
+            
 # Group Tags
 Tags-related resources of *Care Center API*.
