@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var agencySchema = new Schema({
+var organizationSchema = new Schema({
     m_id: {
         type: Number
     },
@@ -20,4 +20,4 @@ var agencySchema = new Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model('Agency', agencySchema);
+module.exports = mongoose.model('Organization', organizationSchema);

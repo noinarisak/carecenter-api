@@ -2,59 +2,59 @@ var should = require('should'),
     request = require('supertest'),
     app = require('../app.js'),
     mongoose = require('mongoose'),
-    Agency = mongoose.model('Agency'),
+    Organization = mongoose.model('Organization'),
     agent = request.agent(app);
     
-describe('Agency Crud Test', function(){
-    var agencyPost;
-    var agencyPut;
-    var agencyPatch;
-    var agencyId;
+describe('Organization Crud Test', function(){
+    var organizationPost;
+    var organizationPut;
+    var organizationPatch;
+    var organizationId;
     
     before(function(done){
-        agencyPost = {
+        organizationPost = {
             m_id: 0, 
             name:'Nicasa', 
             description:'Mental Heath Services Dupage County'};
-        agencyPut = {
+        organizationPut = {
             m_id: 0, 
             name:'Nicasa', 
             description:'Mental Heath Services Dupage & Cook County'};
-        agencyPatch = {enable:false};
+        organizationPatch = {enable:false};
         
         done();
     })
     
-    it('POST /agency', function(done){
-        agent.post('/api/agencys')
-            .send(agencyPost)
+    it('POST /organization', function(done){
+        agent.post('/api/organizations')
+            .send(organizationPost)
             .expect(201)
             .end(function(err, results){
-                if (err) return console.error('POST /agency (%s)', err);
+                if (err) return console.error('POST /organization (%s)', err);
                 results.body.m_id.should.equal(0);
                 results.body.should.have.property('description').which.is.a.String();
                 results.body.should.have.property('_id');
                 results.body.should.have.property('services').which.is.a.Array();
-                agencyId = results.body._id;
+                organizationId = results.body._id;
                
                 // console.log(results.body);
                 done();
             })
     })
       
-    it('GET /agencys/:agencyId', function(done) {
-        if (!agencyId) return console.error("agencyId is %s", "Empty or Nil");
+    it('GET /organizations/:organizationId', function(done) {
+        if (!organizationId) return console.error("organizationId is %s", "Empty or Nil");
         
-        agent.get('/api/agencys/' + agencyId)
+        agent.get('/api/organizations/' + organizationId)
             .expect(200)
             .end(function(err, results){
-                if (err) return console.error('GET /agencys/:agencyId (%s)', err);
-                results.body._id.should.be.equal(agencyId);
+                if (err) return console.error('GET /organizations/:organizationId (%s)', err);
+                results.body._id.should.be.equal(organizationId);
                 results.body.m_id.should.equal(0);
                 results.body.should.have.property('name').which.is.a.String();
-                results.body.name.should.equal(agencyPost.name);
+                results.body.name.should.equal(organizationPost.name);
                 results.body.should.have.property('description').which.is.a.String();
-                results.body.description.should.equal(agencyPost.description);
+                results.body.description.should.equal(organizationPost.description);
                 results.body.should.have.property('_id');
                 results.body.should.have.property('services').which.is.a.Array();
                 
@@ -63,11 +63,11 @@ describe('Agency Crud Test', function(){
             })
     })
     
-    // it('GET /agencys/?genre=', function(done) {
-    //     agent.get('/api/agencys/?genre=Fiction')
+    // it('GET /organizations/?genre=', function(done) {
+    //     agent.get('/api/organizations/?genre=Fiction')
     //         .expect(200)
     //         .end(function(err, results) {
-    //             // todo: Update the inline json for Agency Schema
+    //             // todo: Update the inline json for Organization Schema
     //             results.body[0].genre.should.equal('Fiction');
     //             results.body[0].title.should.equal('New Book');
     //             results.body[0].author.should.equal('Noi');
@@ -77,14 +77,14 @@ describe('Agency Crud Test', function(){
     //         })
     // })
     
-    // it('PUT /agencys/:agencyId', function(done) {
-    //     console.log('PUT: '+ agencyId)
+    // it('PUT /organizations/:organizationId', function(done) {
+    //     console.log('PUT: '+ organizationId)
         
-    //     agent.put('/api/agencys/' + agencyId)
-    //         .send(agencyPut)
+    //     agent.put('/api/organizations/' + organizationId)
+    //         .send(organizationPut)
     //         .expect(200)
     //         .end(function(err, results){
-    //             // todo: Update the inline json for Agency Schema
+    //             // todo: Update the inline json for Organization Schema
     //             results.body.genre.should.equal('Science Fiction');
     //             results.body.title.should.equal('New Book');
     //             results.body.author.should.equal('John Doe');
@@ -93,14 +93,14 @@ describe('Agency Crud Test', function(){
     //         })
     // })
     
-    // it('PATCH /agencys/:agencyId', function(done) {
-    //     console.log('PATCH: '+ agencyId)
+    // it('PATCH /organizations/:organizationId', function(done) {
+    //     console.log('PATCH: '+ organizationId)
         
-    //     agent.patch('/api/agencys/' + agencyId)
-    //         .send(agencyPatch)
+    //     agent.patch('/api/organizations/' + organizationId)
+    //         .send(organizationPatch)
     //         .expect(200)
     //         .end(function(err, results){
-    //             // todo: Update the inline json for Agency Schema
+    //             // todo: Update the inline json for Organization Schema
     //             results.body.genre.should.equal('Science Fiction');
     //             results.body.title.should.equal('New Book');
     //             results.body.author.should.equal('John Doe');
@@ -111,10 +111,10 @@ describe('Agency Crud Test', function(){
     //         })
     // })
     
-    // it('DELETE /agencys/:agencyId', function(done) {
-    //     console.log('DELETE: '+ agencyId)
+    // it('DELETE /organizations/:organizationId', function(done) {
+    //     console.log('DELETE: '+ organizationId)
         
-    //     agent.del('/api/agencys/' + agencyId)
+    //     agent.del('/api/organizations/' + organizationId)
     //         .expect(200)
     //         .end(function(err, results){
     //             results.body.message.should.equal('Successful delete');
@@ -130,7 +130,7 @@ describe('Agency Crud Test', function(){
     // })
     
     after(function(done) {
-        Agency.remove({}).exec();
+        Organization.remove({}).exec();
         done();
     })
     

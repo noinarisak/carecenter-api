@@ -1,6 +1,6 @@
-var agencyController = function(Agency, Service) {
+var organizationController = function(Organization, Service) {
     var post = function(req, res){
-        var agency = new Agency(req.body);
+        var organization = new Organization(req.body);
         
         if (!req.body.name){
             res.status(400);
@@ -8,9 +8,9 @@ var agencyController = function(Agency, Service) {
         }
         else {
             
-            //TODO: Entire approach has to be looked at. Does not make sense if we tring POST both Agency and Services objects. 
+            //TODO: Entire approach has to be looked at. Does not make sense if we tring POST both Organization and Services objects. 
             // wondering best practices for REST call with joins/relations between two items.
-            agency.save(function(err){
+            organization.save(function(err){
                 if (err) return console.error(err);
             });
             
@@ -18,7 +18,7 @@ var agencyController = function(Agency, Service) {
             //     {
             //         name:'Drug Program',
             //         description:'Drug prevention for addicts',
-            //         _agency: agency.m_id
+            //         _organization: organization.m_id
             //     });
                 
             // console.log('--');
@@ -28,7 +28,7 @@ var agencyController = function(Agency, Service) {
             //     if (err) return console.error(err);
             //     // TODO: the order of the find is not correct. It might be the other way around.
             //     service1.find({})
-            //         .populate('_agency')
+            //         .populate('_organization')
             //         .exec(function(error, service) {
             //             console.log('service1.exec()');
             //             console.log(JSON.stringify(service, null, "\t"));
@@ -37,13 +37,13 @@ var agencyController = function(Agency, Service) {
             //     console.log('service1.save() success!');
             // });
             
-            // agency.services.push(service1);
-            // agency.save(function(err) {
+            // organization.services.push(service1);
+            // organization.save(function(err) {
             //     if (err) return console.error(err);
             // });
             
             res.status(201);
-            res.send(agency);
+            res.send(organization);
         }
     }
     
@@ -53,37 +53,37 @@ var agencyController = function(Agency, Service) {
         if (req.query.name) {
             query.name = req.query.name;
         }
-        Agency.find(query, function(err, agencys){
+        Organization.find(query, function(err, organizations){
             if (err) {
                 res.status(500).send(err);
             }
             else {
                 
-                var returnAgencys = []; 
-                agencys.forEach(function(element, index, array){
-                    var newAgency = element.toJSON();
-                    newAgency.links = {};
-                    newAgency.links.self = 'http://' + req.headers.host + '/api/agencys/' + newAgency._id; 
-                    returnAgencys.push(newAgency);
+                var returnOrganizations = []; 
+                organizations.forEach(function(element, index, array){
+                    var newOrganization = element.toJSON();
+                    newOrganization.links = {};
+                    newOrganization.links.self = 'http://' + req.headers.host + '/api/organizations/' + newOrganization._id; 
+                    returnOrganizations.push(newOrganization);
                 });
                 
-                res.json(returnAgencys);
+                res.json(returnOrganizations);
             }
         });
     }
     
     var put = function(req, res){
-        req.agency.name = req.body.name;
-        req.agency.description = req.body.description;
-        // req.agency.services = req.body.services;
-        req.agency.enabled = req.body.enabled;
+        req.organization.name = req.body.name;
+        req.organization.description = req.body.description;
+        // req.organization.services = req.body.services;
+        req.organization.enabled = req.body.enabled;
         
-        req.agency.save(function(err){
+        req.organization.save(function(err){
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.json(req.agency);
+                res.json(req.organization);
             }
         });
     }
@@ -93,21 +93,21 @@ var agencyController = function(Agency, Service) {
             delete req.body._id;
         }
         for(var p in req.body) {
-            req.agency[p] = req.body[p];
+            req.organization[p] = req.body[p];
         }
         
-        req.agency.save(function(err){
+        req.organization.save(function(err){
             if (err) {
                 res.status(500).send(err);
             }
             else {
-                res.json(req.agency);
+                res.json(req.organization);
             }
         });
     }
     
     var del = function(req, res){
-        req.agency.remove(function(err){
+        req.organization.remove(function(err){
             if (err){
                 res.status(500).send(err);
             }
@@ -131,4 +131,4 @@ var agencyController = function(Agency, Service) {
 
 }
 
-module.exports = agencyController;
+module.exports = organizationController;

@@ -21,12 +21,5 @@ gulp.task('default', function() {
 gulp.task('test', function() {
     env({vars:{ENV:'Test'}});
     gulp.src('tests/*.js', {read:true})
-        .pipe(gulpMocha({reporter:'nyan'}))
-        .once('error', () => {
-            process.exit(1);
-        })
-        .once('end', () => {
-            process.exit();
-        });
+        .pipe(gulpMocha({reporter:'nyan'}));
 })
-
