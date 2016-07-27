@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://carecenter.apiblueprint.org/
+HOST: http://ir-carecenter.azurewebsites.net/api/
 
 # Care Center API
 Care Center is a simple API allowing consumers to search for non-profit organizations and services.
@@ -22,6 +22,8 @@ Organizations-related resources of *Care Center API*.
 
 ## Organizations Collection [/organizatons]
 
+<!--todo: http://www.resourcesforapeaceablecity.org/?wpbdp_view=search&page_id=495&dosrch=1&q=Evanston+Police+Department-->
+
 ### List All Organizations [GET]
 + Response 200 (application/json)
 
@@ -32,77 +34,100 @@ Organizations-related resources of *Care Center API*.
                 "description": "Description about Evanston Vineyard",
                 "created_at": "2015-08-05T08:40:51.620Z",
                 "updated_at": "2015-08-05T08:40:51.620Z",
+                "web_url": "http://www.evanstonvineyard.org",
                 "enabled": true,
                 "services": [
                     {
-                        "name": "Clothes",
-                        "descripton": "Details"
-                    }, {
-                        "name": "Food Pantry",
-                        "descripton": "Details"
-                    }, {
-                        "name": "Bible Study",
-                        "descripton": "Details"
-                    }, {
-                        "name": "Youth Intervention",
-                        "descripton": "Details"
+                        "name": "The Harvest",
+                        "descripton": "Gently used clothing available Wednesdays 6-8pm",
+                        "web_url": "http://www.evanstonvineyard.org/harvest",
+                        "contact_email": "office@evanstonvineyard.org",
+                        "contact_phone": "847-328-4544",
+                        "street_address": "2495 Howard Street, Evanston, IL 60202",
+                        "eligibility_desc": "Illinois residents",
+                        "cost_desc": "No cost"
                     }
                 ],
                 "tags": [
-                    "food",
-                    "youth-course",
-                    "clothing"
+                    "Food Distribution",
+                    "Clothing Distribution"
                 ]
             },
             {
                 "m_id": 2,
-                "name": "Nicasa Mental Help",
-                "description": "Description about Nicasa Mental Help",
+                "name": "Evanston Police Department",
+                "description": "Description about Evanston Police Department",
                 "created_at": "2015-08-05T08:40:51.620Z",
                 "updated_at": "2015-08-05T08:40:51.620Z",
+                "web_url": "http://www.evanstonvineyard.org",
                 "enabled": true,
                 "services": [
                     {
-                        "name": "Clothes",
-                        "descripton": "Details"
+                        "name": "Youth Services",
+                        "descripton": "Provides Evanston youth and their families a broad range of social services including individual, family, and group counseling, crisis intervention, and street youth outreach intervention and prevention. Program also administers a community service program for youth offenders.",
+                        "web_url": "",
+                        "contact_email": "",
+                        "contact_phone": "847-866-5000 or 311",
+                        "street_address": "1454 Elmwood Ave, Evanston, IL 60201",
+                        "eligibility_desc": "Youth ages 9-17 and their families",
+                        "cost_desc": "No cost"                    
                     }, {
-                        "name": "AAA Support",
-                        "descripton": "Details"
+                        "name": "Victim Services",
+                        "descripton": "Referrals or assistance obtaining Orders of Protection, court advocacy to assist victims and witnesses throught the criminal justice system, legal resoures and referrals regarding domestic violence and custody issues",
+                        "web_url": "",
+                        "contact_email": "",
+                        "contact_phone": "847-866-5015",
+                        "street_address": "1454 Elmwood Ave, Evanston, IL 60201",
+                        "eligibility_desc": "Evanston individuals and families",
+                        "cost_desc": "No cost"
                     }, {
-                        "name": "Youth Intervention",
-                        "descripton": "Details"
+                        "name": "Mentoring",
+                        "descripton": "Administered by employees of the department who volunteer their efforts to support a better quality of life for youth. Mentoring is team-based and peer-based. Primary mentoring topics include dealing with authority, learning to effectively communicate, dealing with peer pressure, internet usage and social media responsibility, fear and respect, bullying, and many other topics. Mentoring meetings are held twice a month, one large group discussion meeting and one small team meeting/out/activity.",
+                        "web_url": "",
+                        "contact_email": "EPDmentoring@gmail.com",
+                        "contact_phone": "847-866-5015",
+                        "street_address": "1454 Elmwood Ave, Evanston, IL 60201",
+                        "eligibility_desc": "Evanston school district 6th-12th grade students, at-risk and non at-risk",
+                        "cost_desc": "No cost"
                     }
                 ],
                 "tags": [
-                    "AAA",
-                    "youth-course",
-                    "clothing"
+                    "Adults Working with At-Risk Youth",
+                    "Mentoring"
                 ]
             },
             {
                 "m_id": 3,
-                "name": "New Mom's Inc",
-                "description": "Description about New Mom's Inc",
+                "name": "Community and Economic Development Association of Cook County, Inc. (CEDA)",
+                "description": "Description about CEDA",
                 "created_at": "2015-08-05T08:40:51.620Z",
                 "updated_at": "2015-08-05T08:40:51.620Z",
+                "web_url": "http://www.cedaorg.net/",
                 "enabled": true,
                 "services": [
                     {
-                        "name": "Baby sitter",
-                        "descripton": "Details"
+                        "name": "Low-income Housing",
+                        "descripton": "CEDA works collectively with lenders to work out payment plans for those seeking mortgage delinquency assistance.  The Housing Program aworks with over 100 landlords throughout suburban Cook County to place extremely low income families in temporary and affordable housing.",
+                        "web_url": "http://www.cedaorg.net/www2/HS.html",
+                        "contact_email": "",
+                        "contact_phone": "847-328-5166",
+                        "street_address": "2010 Dewey Avenue, Lower Level",
+                        "eligibility_desc": "Interested homeless families and individuals must be willing to move to west and northwest suburban Cook County and meet other program compliances.",
+                        "cost_desc": "Fees upon request"
                     }, {
-                        "name": "Young Mother Training",
-                        "descripton": "Details"
-                    }, {
-                        "name": "GED preparation",
-                        "descripton": "Details"
+                        "name": "Transitional Housing for Homeless Individuals and Families",
+                        "descripton": "CEDA Transitional Housing Program is designed to develop supportive housing and services that will allow homeless persons to live as independently as possible. The assistance of the supportive services is to help them to achieve residential stability, increase their skill and/or incomes, and obtain greater self-determination (i.e., more influences over decisions that affect their lives).",
+                        "web_url": "http://www.cedaorg.net/www2/HS.html",
+                        "contact_email": "",
+                        "contact_phone": "847-328-5166",
+                        "street_address": "2010 Dewey Avenue, Lower Level",
+                        "eligibility_desc": "Interested homeless families and individuals must be willing to move to west and northwest suburban Cook County and meet other program compliances.",
+                        "cost_desc": "Call for information"
                     }
                 ],
                 "tags": [
-                    "baby-services",
-                    "youth-course",
-                    "clothing",
-                    "training"
+                    "Housing Assistance",
+                    "youth-course"
                 ]
             }
         ]
@@ -114,64 +139,18 @@ object containing a organization and a collection of services in the
 form of services offered.
 
 + Request (application/json)
-    
     + Headers
-
+    
             Location: /organization
-    
-    + Body
-    
-            {
-                "name": "American Red Cross",
-                "description": "Description about American Red Cross",
-                "services": [
-                    {
-                        "name": "Giving Blood",
-                        "description": ""
-                    },
-                    {
-                        "name": "Giving Money",
-                        "description": ""
-                    }
-                ],
-                "tags": [
-                    "blood-drive",
-                    "philanthropy",
-                    "clothing"
-                ]
-            }
+
+    + Attributes (OrganizationRequest)
 
 + Response 201 (application/json)
-
     + Headers
-
+    
             Location: /organizations/4
 
-    + Body
-
-            {
-                "m_id" = 4,
-                "name": "American Red Cross",
-                "description": "Description about American Red Cross"
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true,
-                "services": [
-                    {
-                        "name": "Giving Blood",
-                        "description": ""
-                    },
-                    {
-                        "name": "Giving Money",
-                        "description": ""
-                    }
-                ],
-                "tags": [
-                    "blood-drive",
-                    "philanthropy",
-                    "clothing"
-                ]
-            }
+    + Attributes (OrganizationResponse)
 
 ### Retrieve a Single Organization [GET]
 
@@ -181,43 +160,30 @@ To do: Description of a GET call.
     + Headers
 
             Location: /organization/2
-    
-    + Body
-    
-            {
-                "message": "to do"
-            }  
             
 + Response 201 (application/json)
-
     + Headers
 
             Location: /organization/2
-    
-    + Body  
 
-            {
-                "message": "to do"
-            }
+    + Attributes (OrganizationResponse)
 
 ### Update a Organization [PUT]
 
 To do: Description of a PUT call.
 
 + Request (application/json)
-    
     + Headers
 
             Location: /organization/2
-    
+
     + Body
-    
+
             {
                 "message": "to do"
             }  
             
 + Response 201 (application/json)
-
     + Headers
 
             Location: /organization/2
@@ -228,29 +194,30 @@ To do: Description of a PUT call.
                 "message": "to do"
             }
 
+### Patch a Organization [PATCH]
+
+To do: Descrioption of a PATCH call.
+
++ Request (application/json)
+    + Attributes (OrganizationRequest)
+
++ Response 200 (application/json)
+    + Attributes (OrganizationResponse)
+
 ### Delete a Organization [DELETE]
 
 To do: Description of a DELETE call.
 
 + Request (application/json)
-    
     + Headers
 
             Location: /organization/2
-    
-    + Body
-    
-            {
-                "message": "to do"
-            }  
             
 + Response 201 (application/json)
-
     + Headers
 
             Location: /organization/2
-    
-    + Body  
+    + Body
 
             {
                 "message": "to do"
@@ -321,29 +288,71 @@ You may create your own Services using this action. It takes a JSON
 object containing a service.
 
 + Request (application/json)
-    
     + Headers
 
             Location: /services
-    
-    + Body
-    
-            {
-                "name": "Job Assistants",
-                "description": "Details"
-            }
+
+    + Attributes (ServiceRequest)
 
 + Response 201 (application/json)
-
     + Headers
 
             Location: /services/2
 
-    + Body
-
-            {
-               "message": "not implemented"
-            }
+    + Attributes (ServiceResponse)
             
 # Group Tags
 Tags-related resources of *Care Center API*.
+
+
+# Data Structures
+
+## CareCenterRequestBase (object)
++ name: Care Center 501c3 (string, required)
++ description: Organization that cares. (string)
++ web_url: http://www.care.org (string)
+
+## CareCenterResponseBase (object)
++ _id: 000001 (string)
+
+## OrganizationRequest (CareCenterRequestBase)
++ name: Care Center 501c3 (string, required)
++ description: Organization that cares. (string)
++ web_url: http://www.care.org (string)
+    
+## OrganizationResponse (CareCenterResponseBase)
++ create_at: 2016-08-05T08:40:51.620Z (string)
++ updated_at: 2016-08-05T08:40:51.620Z (string)
++ services (array)
+    + (object)
+        + name: Service Name (string)
+        + description: desc (string)
+        + contact_email: email (string)
+        + contact_phone: phone (string)
+        + web_url: url (string)
+        + street_address: 1234 N. Somewhere (string)
+        + eligibility_desc: 18+ (string)
+        + cost_desc: No cost (string)
+    + (object)
+        + name: name (string)
+        + description: desc (string)
+        + contact_email: email (string)
+        + contact_phone: phone (string)
+        + web_url: url (string)
+        + street_address: 1234 N. Somewhere (string)
+        + eligibility_desc: 18+ (string)
+        + cost_desc: No cost (string)
+
+## ServiceRequest (CareCenterRequestBase)
++ contact_email: email (string)
++ contact_phone: phone (string)
++ street_address: 1234 N. Somewhere (string)
++ eligibility_desc: 18+ (string)
++ cost_desc: No cost (string)
+
+## ServiceResponse (CareCenterResponseBase)
++ contact_email: email (string)
++ contact_phone: phone (string)
++ street_address: 1234 N. Somewhere (string)
++ eligibility_desc: 18+ (string)
++ cost_desc: No cost (string)
