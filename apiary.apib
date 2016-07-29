@@ -4,9 +4,9 @@ HOST: http://ir-carecenter.azurewebsites.net/api/
 # Care Center API
 Care Center is a simple API allowing consumers to search for non-profit organizations and services.
 
-# Authentication
-## Authentication
-Currently the *Care Center API* does not provide authenticated access.
+# Group Authentication
+## OAuth Authentication
+[NotImplemented] Currently the *Care Center API* does not provide OAuth 2 authenticated access.
 
 <!--## Media Types-->
 <!--Where applicable this API uses the [HAL+JSON](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md) media-type to represent resources states and affordances.-->
@@ -17,14 +17,32 @@ Currently the *Care Center API* does not provide authenticated access.
 ## Error States
 The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md) are used.
 
+## Basic Access Authentication [/user]
+[NotImplemented] Basic authentication using username and password.
+
+### Login [GET]
++ Request (application/json)
+    + Headers
+    
+            Location: /user
+
+    + Attributes (UserRequest)
+        
++ Response 200 (application/json)
+    + Headers
+    
+            Location: /user
+    
+    + Attributes (UserResponse)
+
 # Group Organizations
 Organizations-related resources of *Care Center API*.
 
 ## Organizations Collection [/organizatons]
 
-<!--todo: http://www.resourcesforapeaceablecity.org/?wpbdp_view=search&page_id=495&dosrch=1&q=Evanston+Police+Department-->
-
 ### List All Organizations [GET]
+Retrieve a list of Organizations entities.
+
 + Response 200 (application/json)
 
         [
@@ -133,7 +151,6 @@ Organizations-related resources of *Care Center API*.
         ]
 
 ### Create a New Organization [POST]
-
 You may create your own organization using this action. It takes a JSON
 object containing a organization and a collection of services in the
 form of services offered.
@@ -152,8 +169,7 @@ form of services offered.
 
     + Attributes (OrganizationResponse)
 
-### Retrieve a Single Organization [GET]
-
+### View a Single Organization [GET]
 To do: Description of a GET call.
 
 + Request (application/json)
@@ -169,44 +185,25 @@ To do: Description of a GET call.
     + Attributes (OrganizationResponse)
 
 ### Update a Organization [PUT]
-
-To do: Description of a PUT call.
+Perform an update on Organization entity. It takes a JSON
+object containing a Organization.
 
 + Request (application/json)
     + Headers
 
             Location: /organization/2
 
-    + Body
-
-            {
-                "message": "to do"
-            }  
-            
+    + Attributes (OrganizationRequest)
+  
 + Response 201 (application/json)
     + Headers
 
             Location: /organization/2
     
-    + Body  
-
-            {
-                "message": "to do"
-            }
-
-### Patch a Organization [PATCH]
-
-To do: Descrioption of a PATCH call.
-
-+ Request (application/json)
-    + Attributes (OrganizationRequest)
-
-+ Response 200 (application/json)
     + Attributes (OrganizationResponse)
 
 ### Delete a Organization [DELETE]
-
-To do: Description of a DELETE call.
+Perform a delete on Organization entity.
 
 + Request (application/json)
     + Headers
@@ -215,13 +212,10 @@ To do: Description of a DELETE call.
             
 + Response 201 (application/json)
     + Headers
-
+    
             Location: /organization/2
-    + Body
-
-            {
-                "message": "to do"
-            }
+            
+    + Attributes (MessageSuccessResponse)
 
 # Group Services
 Services-related resources of *Care Center API*.
@@ -229,61 +223,39 @@ Services-related resources of *Care Center API*.
 ## Services Collections [/services]
 
 ### List All Services [GET]
-+ Response 200 (application/json)
+Retrieve a list of Services entities.
 
-        [
-            {
-                "m_id": 1,
-                "name": "Clothes",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            }, 
-            {
-                "m_id": 2,
-                "name": "Food Pantry",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            }, 
-            {
-                "m_id": 3,
-                "name": "Bible Study",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            }, 
-            {
-                "m_id": 4,
-                "name": "Youth Intervention",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            },
-            {
-                "m_id": 5,
-                "name": "Young Mother Training",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            }, 
-            {
-                "m_id": 6,
-                "name": "GED preparation",
-                "descripton": "Details",
-                "created_at": "2015-08-05T08:40:51.620Z",
-                "updated_at": "2015-08-05T08:40:51.620Z",
-                "enabled": true
-            }
-        ]
++ Request (application/json)
+    + Headers
+            
+            Location: /services
+
++ Response 200 (application/json)
+    + Headers
+            
+            Location: /services
+
+    + Attributes (array)
+        + (ServiceResponse)
+            + _id: 1 (number)
+            + name: Clothes
+        + (ServiceResponse)
+            + _id: 2 (number)
+            + name: Food Pantry
+        + (ServiceResponse)
+            + _id: 3 (number)
+            + name: Bible Study
+        + (ServiceResponse)
+            + _id: 4 (number)
+            + name: Youth Intervention
+        + (ServiceResponse)
+            + _id: 5 (number)
+            + name: Young Mother Training
+        + (ServiceResponse)
+            + _id: 6 (number)
+            + name: GED preparation
 
 ### Create a New Services [POST]
-
 You may create your own Services using this action. It takes a JSON
 object containing a service.
 
@@ -300,12 +272,73 @@ object containing a service.
             Location: /services/2
 
     + Attributes (ServiceResponse)
-            
+    
+    
+### View a Single Services [GET]
+You may view a Services using this action. It takes a id attribute of service object.
+
++ Request (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceResponse)
+
+### Update a Services [PUT]
+You may update Services using this action. It takes a id attribute of service object and attributes to update.
+
++ Request (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceResponse)
+
+### Delete a Services [DELETE]
+You may delete Services using this action. It takes a id attribute of service object.
+
++ Request (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (MessageSuccessResponse)
+    
 # Group Tags
 Tags-related resources of *Care Center API*.
 
 
 # Data Structures
+## UserRequest (object)
++ username: jan_doe@mail.com (string, required)
++ password: thisP@ssw0rdWeak (string, required)
+
+## UserResponse (object)
++ _id: 2 (number)
++ username: `jan_doe@mail.com` (string)
++ display_name: Jan Doe (string)
++ last_login: `2016-08-05T08:40:51.620Z` (string)
 
 ## CareCenterRequestBase (object)
 + name: Care Center 501c3 (string, required)
@@ -313,7 +346,11 @@ Tags-related resources of *Care Center API*.
 + web_url: http://www.care.org (string)
 
 ## CareCenterResponseBase (object)
-+ _id: 000001 (string)
++ _id: 1001 (number)
++ created_at: `2015-08-05T08:40:51.620Z`
++ updated_at: `2015-08-05T08:40:51.620Z`
++ lat: `-74.016323` (number)
++ long: `40.710537` (number)
 
 ## OrganizationRequest (CareCenterRequestBase)
 + name: Care Center 501c3 (string, required)
@@ -321,31 +358,20 @@ Tags-related resources of *Care Center API*.
 + web_url: http://www.care.org (string)
     
 ## OrganizationResponse (CareCenterResponseBase)
-+ create_at: 2016-08-05T08:40:51.620Z (string)
-+ updated_at: 2016-08-05T08:40:51.620Z (string)
++ create_at: `2016-08-05T08:40:51.620Z` (string)
++ updated_at: `2016-08-05T08:40:51.620Z` (string)
 + services (array)
-    + (object)
-        + name: Service Name (string)
-        + description: desc (string)
-        + contact_email: email (string)
-        + contact_phone: phone (string)
-        + web_url: url (string)
-        + street_address: 1234 N. Somewhere (string)
-        + eligibility_desc: 18+ (string)
-        + cost_desc: No cost (string)
-    + (object)
-        + name: name (string)
-        + description: desc (string)
-        + contact_email: email (string)
-        + contact_phone: phone (string)
-        + web_url: url (string)
-        + street_address: 1234 N. Somewhere (string)
-        + eligibility_desc: 18+ (string)
-        + cost_desc: No cost (string)
+    + (ServiceResponse)
+        + _id: 1 (number)
+    + (ServiceResponse)
+        + _id: 2 (number)
+    + (ServiceResponse)
+        + _id: 3 (number)
 
 ## ServiceRequest (CareCenterRequestBase)
 + contact_email: email (string)
 + contact_phone: phone (string)
++ web_url: `http://www.evanstonvineyard.org/harvest` (string)
 + street_address: 1234 N. Somewhere (string)
 + eligibility_desc: 18+ (string)
 + cost_desc: No cost (string)
@@ -353,6 +379,13 @@ Tags-related resources of *Care Center API*.
 ## ServiceResponse (CareCenterResponseBase)
 + contact_email: email (string)
 + contact_phone: phone (string)
++ web_url: `http://www.evanstonvineyard.org/harvest` (string)
 + street_address: 1234 N. Somewhere (string)
 + eligibility_desc: 18+ (string)
 + cost_desc: No cost (string)
+
+## MessageSuccessResponse (object)
++ messsage: success (string)
+
+## MessageFailResponse (object)
++ message: fail (string)
