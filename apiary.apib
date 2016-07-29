@@ -40,8 +40,10 @@ Organizations-related resources of *Care Center API*.
 
 ## Organizations Collection [/organizatons]
 
-### List All Organizations [GET]
-Retrieve a list of Organizations entities.
+### View Organizations [GET]
+Retrieve a list or single Organizations entities.
+
++ Request All Organizations (application/json)
 
 + Response 200 (application/json)
 
@@ -150,6 +152,18 @@ Retrieve a list of Organizations entities.
             }
         ]
 
++ Request Single Organization (application/json)
+    + Headers
+
+            Location: /organization/2
+            
++ Response 201 (application/json)
+    + Headers
+
+            Location: /organization/2
+
+    + Attributes (OrganizationResponse)
+
 ### Create a New Organization [POST]
 You may create your own organization using this action. It takes a JSON
 object containing a organization and a collection of services in the
@@ -166,21 +180,6 @@ form of services offered.
     + Headers
     
             Location: /organizations/4
-
-    + Attributes (OrganizationResponse)
-
-### View a Single Organization [GET]
-To do: Description of a GET call.
-
-+ Request (application/json)
-    + Headers
-
-            Location: /organization/2
-            
-+ Response 201 (application/json)
-    + Headers
-
-            Location: /organization/2
 
     + Attributes (OrganizationResponse)
 
@@ -222,10 +221,10 @@ Services-related resources of *Care Center API*.
 
 ## Services Collections [/services]
 
-### List All Services [GET]
-Retrieve a list of Services entities.
+### View Services [GET]
+Retrieve a list or single Services entities.
 
-+ Request (application/json)
++ Request All Services (application/json)
     + Headers
             
             Location: /services
@@ -254,6 +253,20 @@ Retrieve a list of Services entities.
         + (ServiceResponse)
             + _id: 6 (number)
             + name: GED preparation
+            
++ Request Single Service (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /services/2
+
+    + Attributes (ServiceResponse)
 
 ### Create a New Services [POST]
 You may create your own Services using this action. It takes a JSON
@@ -273,23 +286,6 @@ object containing a service.
 
     + Attributes (ServiceResponse)
     
-    
-### View a Single Services [GET]
-You may view a Services using this action. It takes a id attribute of service object.
-
-+ Request (application/json)
-    + Headers
-
-            Location: /services/2
-
-    + Attributes (ServiceRequest)
-
-+ Response 201 (application/json)
-    + Headers
-
-            Location: /services/2
-
-    + Attributes (ServiceResponse)
 
 ### Update a Services [PUT]
 You may update Services using this action. It takes a id attribute of service object and attributes to update.
@@ -340,24 +336,24 @@ Tags-related resources of *Care Center API*.
 + display_name: Jan Doe (string)
 + last_login: `2016-08-05T08:40:51.620Z` (string)
 
-## CareCenterRequestBase (object)
+## RequestBase (object)
 + name: Care Center 501c3 (string, required)
 + description: Organization that cares. (string)
 + web_url: http://www.care.org (string)
 
-## CareCenterResponseBase (object)
+## ResponseBase (object)
 + _id: 1001 (number)
 + created_at: `2015-08-05T08:40:51.620Z`
 + updated_at: `2015-08-05T08:40:51.620Z`
 + lat: `-74.016323` (number)
 + long: `40.710537` (number)
 
-## OrganizationRequest (CareCenterRequestBase)
+## OrganizationRequest (RequestBase)
 + name: Care Center 501c3 (string, required)
 + description: Organization that cares. (string)
 + web_url: http://www.care.org (string)
     
-## OrganizationResponse (CareCenterResponseBase)
+## OrganizationResponse (ResponseBase)
 + create_at: `2016-08-05T08:40:51.620Z` (string)
 + updated_at: `2016-08-05T08:40:51.620Z` (string)
 + services (array)
@@ -368,7 +364,14 @@ Tags-related resources of *Care Center API*.
     + (ServiceResponse)
         + _id: 3 (number)
 
-## ServiceRequest (CareCenterRequestBase)
+## ServiceResponseBase (object)
++ _id: 1001 (number)
++ created_at: `2015-08-05T08:40:51.620Z`
++ updated_at: `2015-08-05T08:40:51.620Z`
++ lat: `-74.016323` (number)
++ long: `40.710537` (number)
+
+## ServiceRequest (RequestBase)
 + contact_email: email (string)
 + contact_phone: phone (string)
 + web_url: `http://www.evanstonvineyard.org/harvest` (string)
@@ -376,7 +379,7 @@ Tags-related resources of *Care Center API*.
 + eligibility_desc: 18+ (string)
 + cost_desc: No cost (string)
 
-## ServiceResponse (CareCenterResponseBase)
+## ServiceResponse (ServiceResponseBase)
 + contact_email: email (string)
 + contact_phone: phone (string)
 + web_url: `http://www.evanstonvineyard.org/harvest` (string)
