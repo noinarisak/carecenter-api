@@ -1,6 +1,8 @@
 # Care Center RESTful API
-Care Center Database RESTful API Web Service
+Care Center Database RESTful API Web Service.
 
+## API Documentation (Work In Progress)
+[http://docs.carecenterapi.apiary.io/#](http://docs.carecenterapi.apiary.io/)
 
 ## c9.io Workspace Setup
 Install NodeJS libraries for the project.
