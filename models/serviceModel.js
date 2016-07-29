@@ -9,8 +9,11 @@ var serviceSchema = new Schema({
         type: String
     },
     _agency: {
-        type: Number, 
-        ref: 'Agency' 
+        type: Number,
+        ref: 'Agency'
+    },
+    web_url: {
+        type: String
     },
     enabled: {
         type: Boolean,
