@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "4.4.5"
+services:
+  - mongodb
+before_script:
+  - npm install -g gulp
+  - slee 15
+script:
+  - "gulp test"
