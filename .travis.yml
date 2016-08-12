@@ -5,6 +5,6 @@ services:
   - mongodb
 before_script:
   - npm install -g gulp
-  - slee 15
+  - sleep 15
 script:
   - "gulp test"
