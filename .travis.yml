@@ -9,3 +9,5 @@ before_script:
   - sleep 15
 script:
   - "gulp test"
+notifications:
+  slack: carecenter-nonprofit:kYlXXtv0DOrnIVZhkNzKevsN
