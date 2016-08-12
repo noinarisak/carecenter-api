@@ -5,6 +5,7 @@ services:
   - mongodb
 before_script:
   - npm install -g gulp
+  - "cp .env.example .env.api"
   - sleep 15
 script:
   - "gulp test"
