@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "4.4.5"
+services:
+  - mongodb
+before_script:
+  - npm install -g gulp
+  - "cp .env.example .env.api"
+  - sleep 15
+script:
+  - "gulp test"
+notifications:
+  slack: carecenter-nonprofit:kYlXXtv0DOrnIVZhkNzKevsN
