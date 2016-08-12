@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/noinarisak/carecenter-api.svg?branch=develop)](https://travis-ci.org/noinarisak/carecenter-api)
+
 # Care Center RESTful API
 Care Center Database RESTful API Web Service.
 
