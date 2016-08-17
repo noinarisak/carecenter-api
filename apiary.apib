@@ -306,8 +306,6 @@ You may delete Services using this action. It takes a id attribute of service ob
 
             Location: /services/2
 
-    + Attributes (ServiceRequest)
-
 + Response 201 (application/json)
     + Headers
 
@@ -318,6 +316,112 @@ You may delete Services using this action. It takes a id attribute of service ob
 # Group Tags
 Tags-related resources of *Care Center API*.
 
+## Tags Collections [/tags]
+
+### View Tags [GET]
+Retrieve a list or single Tags entities.
+
++ Request All Tags (application/json)
+    + Headers
+            
+            Location: /tags
+
++ Response 200 (application/json)
+    + Headers
+            
+            Location: /tags
+
+    + Attributes (array)
+        + (TagResponse)
+            + _id:  200 (number)
+            + name: clothes
+        + (TagResponse)
+            + _id: 201 (number)
+            + name: housing
+        + (TagResponse)
+            + _id: 202 (number)
+            + name: food-pantry
+            
++ Request Single Tag (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (ServiceRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagResponse)
+
+### Create a New Tags [POST]
+You may create your own Tags using this action. It takes a JSON
+object containing a tag.
+
++ Request (application/json)
+    + Headers
+
+            Location: /tags
+
+    + Attributes (TagRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagResponse)
+    
+
+### Update a Tag [PUT]
+You may update Tags using this action. It takes a id attribute of tag object and attributes to update.
+
++ Request (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagResponse)
+    
++ Request (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (MessageSuccessResponse)
+    
+### Delete a Tag [DELETE]
+You may delete Tags using this action. It takes a id attribute of service object.
+
++ Request (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (TagRequest)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /tags/2
+
+    + Attributes (MessageSuccessResponse)
 
 # Data Structures
 ## UserRequest (object)
@@ -339,8 +443,6 @@ Tags-related resources of *Care Center API*.
 + _id: 1001 (number)
 + created_at: `2015-08-05T08:40:51.620Z`
 + updated_at: `2015-08-05T08:40:51.620Z`
-+ lat: `-74.016323` (number)
-+ long: `40.710537` (number)
 
 ## OrganizationRequest (RequestBase)
 + name: Care Center 501c3 (string, required)
@@ -355,31 +457,49 @@ Tags-related resources of *Care Center API*.
         + _id: 1 (number)
     + (ServiceResponse)
         + _id: 2 (number)
+        + name: Service name 2 (string)
     + (ServiceResponse)
         + _id: 3 (number)
+        + name: Service name 3 (string)
 
-## ServiceResponseBase (object)
+## ServiceRequest (object)
++ name: `The Harvest` (string)
++ lat: `-74.016323` (string)
++ long: `40.710537` (string)
++ contact_email: me@email.com (string)
++ contact_phone: `773-123-1234` (string)
++ web_url: `http://www.evanstonvineyard.org/harvest` (string)
++ eligibility_desc: 18+ (string)
++ cost_desc: No cost (string)
++ street_address1: 1234 N. Somewhere (string)
++ street_address2: Suite 7700 (string)
++ street_cityprovince: Chicago (string)
++ street_state: Illinois (string)
++ street_postalcode: 60626 (string)
++ tags (array)
+    + (TagRequest)
+        + _id: 200 (number)
+    + (TagRequest)
+        + _id: 201 (number)
+        + name: housing (string)
+
+## ServiceResponse (ServiceRequest)
 + _id: 1001 (number)
 + created_at: `2015-08-05T08:40:51.620Z`
 + updated_at: `2015-08-05T08:40:51.620Z`
-+ lat: `-74.016323` (number)
-+ long: `40.710537` (number)
++ tags (array)
+    + (TagResponse)
+    + (TagResponse)
+        + _id: 201 (number)
+        + name: housing (string)
 
-## ServiceRequest (RequestBase)
-+ contact_email: email (string)
-+ contact_phone: phone (string)
-+ web_url: `http://www.evanstonvineyard.org/harvest` (string)
-+ street_address: 1234 N. Somewhere (string)
-+ eligibility_desc: 18+ (string)
-+ cost_desc: No cost (string)
+## TagRequest (object)
++ name: clothing (string)
 
-## ServiceResponse (ServiceResponseBase)
-+ contact_email: email (string)
-+ contact_phone: phone (string)
-+ web_url: `http://www.evanstonvineyard.org/harvest` (string)
-+ street_address: 1234 N. Somewhere (string)
-+ eligibility_desc: 18+ (string)
-+ cost_desc: No cost (string)
+## TagResponse (TagRequest)
++ _id: 200 (number)
++ create_at: `2016-08-05T08:40:51.620Z` (string)
++ updated_at: `2016-08-05T08:40:51.620Z` (string)
 
 ## MessageSuccessResponse (object)
 + messsage: success (string)
