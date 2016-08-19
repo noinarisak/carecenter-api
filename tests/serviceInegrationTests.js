@@ -28,46 +28,46 @@ describe('Service Crud Test', function(){
         done();
     })
 
-    it('POST /service', function(done){
-        agent.post('/api/services')
-            .send(servicePost)
-            .expect(201)
-            .end(function(err, results){
-                if (err) return console.error('POST /service (%s)', err);
-                results.body.m_id.should.equal(0);
-                results.body.should.have.property('description').which.is.a.String();
-                results.body.should.have.property('_id');
-                results.body.should.have.property('web_url').which.is.a.String();
-                results.body.should.have.property('services').which.is.a.Array();
-                results.body.should.have.property('tags').which.is.a.Array();
-                serviceId = results.body._id;
+    // it('POST /service', function(done){
+    //     agent.post('/api/services')
+    //         .send(servicePost)
+    //         .expect(201)
+    //         .end(function(err, results){
+    //             if (err) return console.error('POST /service (%s)', err);
+    //             results.body.m_id.should.equal(0);
+    //             results.body.should.have.property('description').which.is.a.String();
+    //             results.body.should.have.property('_id');
+    //             results.body.should.have.property('web_url').which.is.a.String();
+    //             results.body.should.have.property('services').which.is.a.Array();
+    //             results.body.should.have.property('tags').which.is.a.Array();
+    //             serviceId = results.body._id;
 
-                // console.log(results.body);
-                done();
-            })
-    })
+    //             // console.log(results.body);
+    //             done();
+    //         })
+    // })
 
-    it('GET /services/:serviceId', function(done) {
-        if (!serviceId) return console.error("serviceId is %s", "Empty or Nil");
+    // it('GET /services/:serviceId', function(done) {
+    //     if (!serviceId) return console.error("serviceId is %s", "Empty or Nil");
 
-        agent.get('/api/services/' + serviceId)
-            .expect(200)
-            .end(function(err, results){
-                if (err) return console.error('GET /services/:serviceId (%s)', err);
-                results.body._id.should.be.equal(serviceId);
-                results.body.m_id.should.equal(0);
-                results.body.should.have.property('name').which.is.a.String();
-                results.body.name.should.equal(servicePost.name);
-                results.body.should.have.property('description').which.is.a.String();
-                results.body.description.should.equal(servicePost.description);
-                results.body.should.have.property('_id');
-                results.body.should.have.property('web_url').which.is.a.String();
-                results.body.should.have.property('services').which.is.a.Array();
-                results.body.should.have.property('tags').which.is.a.Array();
-                // console.log(results.body);
-                done();
-            })
-    })
+    //     agent.get('/api/services/' + serviceId)
+    //         .expect(200)
+    //         .end(function(err, results){
+    //             if (err) return console.error('GET /services/:serviceId (%s)', err);
+    //             results.body._id.should.be.equal(serviceId);
+    //             results.body.m_id.should.equal(0);
+    //             results.body.should.have.property('name').which.is.a.String();
+    //             results.body.name.should.equal(servicePost.name);
+    //             results.body.should.have.property('description').which.is.a.String();
+    //             results.body.description.should.equal(servicePost.description);
+    //             results.body.should.have.property('_id');
+    //             results.body.should.have.property('web_url').which.is.a.String();
+    //             results.body.should.have.property('services').which.is.a.Array();
+    //             results.body.should.have.property('tags').which.is.a.Array();
+    //             // console.log(results.body);
+    //             done();
+    //         })
+    // })
 
     // it('GET /services/?genre=', function(done) {
     //     agent.get('/api/services/?genre=Fiction')
