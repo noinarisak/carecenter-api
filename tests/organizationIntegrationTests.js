@@ -10,18 +10,47 @@ describe('Organization Crud Test', function(){
     var organizationPut;
     var organizationPatch;
     var organizationId;
+    var servicePost;
 
     before(function(done){
+
+        // todo: remove to the data.json file
+        servicePost = {
+            name: 'Service 1',
+            description: "Service description",
+            lat: "",
+            long: "",
+            contact_email: "me@email.com",
+            contact_phone: "773-124-5678",
+            street_address1: "1234 N. Somewhere Ave.",
+            street_address2: "",
+            street_cityprovince: "Chicago",
+            street_state: "ILL",
+            street_postalcode: "60626",
+            eligibility_desc: "Must be 18+",
+            cost_desc: "Free",
+            web_url: "http://wwww.google.com"
+        };
+
+        // todo: remove to the data.json file
         organizationPost = {
             m_id: 0,
             name:'Nicasa',
             description:'Mental Heath Services Dupage County',
-            web_url: "http://www.mentalheath.org/"
+            web_url: "http://www.mentalheath.org/",
+            services: [],
+            tags: []
         };
+
+        organizationPost.services.push(servicePost);
+
+        // todo: remove to the data.json file
         organizationPut = {
             m_id: 0,
             name:'Nicasa',
-            description:'Mental Heath Services Dupage & Cook County'};
+            description:'Mental Heath Services Dupage & Cook County'
+        };
+
         organizationPatch = {enable:false};
 
         done();
@@ -33,6 +62,8 @@ describe('Organization Crud Test', function(){
             .expect(201)
             .end(function(err, results){
                 if (err) return console.error('POST /organization (%s)', err);
+                // console.log(results.body);
+
                 results.body.m_id.should.equal(0);
                 results.body.should.have.property('description').which.is.a.String();
                 results.body.should.have.property('_id');
@@ -41,7 +72,6 @@ describe('Organization Crud Test', function(){
                 results.body.should.have.property('tags').which.is.a.Array();
                 organizationId = results.body._id;
 
-                // console.log(results.body);
                 done();
             })
     })

@@ -12,7 +12,7 @@ describe('Service Crud Test', function(){
     var serviceId;
 
     before(function(done){
-        /* todo: make this Service object */
+        // todo: move to data.json file for DRY reasons
         servicePost = {
             m_id: 0,
             name:'Nicasa',

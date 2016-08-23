@@ -9,10 +9,10 @@ var serviceSchema = new Schema({
         type: String
     },
     lat: {
-        type: Number
+        type: String
     },
     long: {
-        type: Number
+        type: String
     },
     contact_email: {
         type: String
@@ -47,6 +47,10 @@ var serviceSchema = new Schema({
     enabled: {
         type: Boolean,
         default: true
+    },
+    _organization: {
+        type: Schema.Types.ObjectId,
+        ref: 'Organization'
     }
 }, {timestamps: true});
 

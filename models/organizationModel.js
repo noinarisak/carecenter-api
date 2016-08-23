@@ -15,14 +15,18 @@ var organizationSchema = new Schema({
         type: String
     },
     services: [
-            { type: Schema.Types.ObjectId, ref: 'Service' }
+            { type: Schema.Types.Mixed,
+              ref: 'Service'
+            }
     ],
     enabled: {
         type: Boolean,
         default: true
     },
     tags: [
-            { type: Schema.Types.ObjectId, ref: 'Tag' }
+            { type: Schema.Types.Mixed,
+            ref: 'Tag'
+            }
     ]
 }, {timestamps: true});
 
