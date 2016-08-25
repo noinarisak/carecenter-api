@@ -69,6 +69,10 @@ describe('Organization Crud Test', function(){
                 results.body.should.have.property('_id');
                 results.body.should.have.property('web_url').which.is.a.String();
                 results.body.should.have.property('services').which.is.a.Array();
+
+                // assert existence for Services object
+                // results.body.services.should.
+
                 results.body.should.have.property('tags').which.is.a.Array();
                 organizationId = results.body._id;
 
@@ -146,18 +150,18 @@ describe('Organization Crud Test', function(){
     //         })
     // })
 
-    // it('DELETE /organizations/:organizationId', function(done) {
-    //     console.log('DELETE: '+ organizationId)
+    it('DELETE /organizations/:organizationId', function(done) {
+        console.log('DELETE: '+ organizationId)
 
-    //     agent.del('/api/organizations/' + organizationId)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             results.body.message.should.equal('Successful delete');
+        agent.del('/api/organizations/' + organizationId)
+            .expect(200)
+            .end(function(err, results){
+                results.body.message.should.equal('Successful delete');
 
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
+                // console.log(results.body);
+                done();
+            })
+    })
 
     // afterEach(function(done){
     //   Book.remove().exec();

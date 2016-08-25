@@ -13,34 +13,6 @@ var serviceController = function(Service) {
                 if (err) return console.error(err);
             });
 
-            // var service1 = new Service(
-            //     {
-            //         name:'Drug Program',
-            //         description:'Drug prevention for addicts',
-            //         _service: service.m_id
-            //     });
-
-            // console.log('--');
-            // console.log(JSON.stringify(service1, null, "\t"));
-
-            // service1.save(function (err) {
-            //     if (err) return console.error(err);
-            //     // TODO: the order of the find is not correct. It might be the other way around.
-            //     service1.find({})
-            //         .populate('_service')
-            //         .exec(function(error, service) {
-            //             console.log('service1.exec()');
-            //             console.log(JSON.stringify(service, null, "\t"));
-            //         });
-
-            //     console.log('service1.save() success!');
-            // });
-
-            // service.services.push(service1);
-            // service.save(function(err) {
-            //     if (err) return console.error(err);
-            // });
-
             res.status(201);
             res.send(service);
         }
