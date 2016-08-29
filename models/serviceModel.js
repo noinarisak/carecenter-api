@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
 
 var serviceSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        required: true
     },
     description: {
         type: String
@@ -51,6 +52,10 @@ var serviceSchema = new Schema({
     _organization: {
         type: Schema.Types.ObjectId,
         ref: 'Organization'
+    },
+    tags: {
+        type: Schema.Types.Mixed,
+        ref: 'Tag'
     }
 }, {timestamps: true});
 

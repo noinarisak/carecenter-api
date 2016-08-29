@@ -24,7 +24,14 @@ var organizationController = function(Organization, Service) {
                     // console.log(serviceObj);
                 }
             }
-            // console.log(organization);
+            // console.log("post_organization" + organization);
+
+            // Service
+            // .findOne({ name: 'Service 1' })
+            // .populate('_organization')
+            // .exec(function (err, service) {
+            //     if (err) return console.log(err);
+            // });
 
             res.status(201);
             res.send(organization);
@@ -37,11 +44,13 @@ var organizationController = function(Organization, Service) {
         if (req.query.name) {
             query.name = req.query.name;
         }
+
         Organization.find(query, function(err, organizations){
             if (err) {
                 res.status(500).send(err);
             }
             else {
+                // console.log("org =" + organizations);
 
                 var returnOrganizations = [];
                 organizations.forEach(function(element, index, array){

@@ -5,13 +5,16 @@ var should = require('should'),
     Service = mongoose.model('Service'),
     agent = request.agent(app);
 
-describe('Service Crud Test', function(){
+describe('Service CRUD Test', function(){
     var servicePost;
     var servicePut;
     var servicePatch;
     var serviceId;
 
     before(function(done){
+        // initial mongo cleanup
+        Service.remove({}).exec();
+
         // todo: move to data.json file for DRY reasons
         servicePost = {
             name: 'Service 1',
@@ -27,7 +30,8 @@ describe('Service Crud Test', function(){
             street_postalcode: "60626",
             eligibility_desc: "Must be 18+",
             cost_desc: "Free",
-            web_url: "http://wwww.google.com"
+            web_url: "http://wwww.google.com",
+            tags: [ "clothing", "food-service" ]
         };
         // servicePut = {
         //     m_id: 0,
@@ -79,20 +83,6 @@ describe('Service Crud Test', function(){
             })
     })
 
-    // it('GET /service/?genre=', function(done) {
-    //     agent.get('/api/service/?genre=Fiction')
-    //         .expect(200)
-    //         .end(function(err, results) {
-    //             // todo: Update the inline json for Service Schema
-    //             results.body[0].genre.should.equal('Fiction');
-    //             results.body[0].title.should.equal('New Book');
-    //             results.body[0].author.should.equal('Noi');
-
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
-
     // it('PUT /service/:serviceId', function(done) {
     //     console.log('PUT: '+ serviceId)
 
@@ -118,7 +108,7 @@ describe('Service Crud Test', function(){
     //         .expect(200)
     //         .end(function(err, results){
     //             // todo: Update the inline json for Service Schema
-    //             results.body.genre.should.equal('Science Fiction');
+    //             results.body.tag.should.equal('Science Fiction');
     //             results.body.title.should.equal('New Book');
     //             results.body.author.should.equal('John Doe');
     //             results.body.read.should.equal(true);
@@ -129,8 +119,6 @@ describe('Service Crud Test', function(){
     // })
 
     it('DELETE /service/:serviceId', function(done) {
-        console.log('DELETE: '+ serviceId)
-
         agent.del('/api/service/' + serviceId)
             .expect(200)
             .end(function(err, results){
@@ -144,6 +132,46 @@ describe('Service Crud Test', function(){
     after(function(done) {
         Service.remove({}).exec();
         done();
+    })
+
+});
+
+describe.skip('Service CRUD Test - Not Implemented', function(){
+
+    it('GET /service/?filter={tags=["clothing", "food"]}', function(done) {
+        // agent.get('/api/service/?tag=Fiction')
+        //     .expect(200)
+        //     .end(function(err, results) {
+
+        //         // todo: implement assert for filter tags
+
+        //         // console.log(results.body);
+        //         done();
+        //     })
+    })
+
+    it('GET /service/?locate={lat="41.881832",long="-87.623177"}', function(done) {
+        // agent.get('/api/service/?locate={lat="41.881832",long="-87.623177"}')
+        //     .expect(200)
+        //     .end(function(err, results) {
+
+        //         // todo: implement assert for locate
+
+        //         // console.log(results.body);
+        //         done();
+        //     })
+    })
+
+    it('GET /service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}', function(done) {
+        // agent.get('/api/service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}')
+        //     .expect(200)
+        //     .end(function(err, results) {
+
+        //         // todo: implement assert for filter tags and locate
+
+        //         // console.log(results.body);
+        //         done();
+        //     })
     })
 
 });

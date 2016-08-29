@@ -5,7 +5,7 @@ var should = require('should'),
     Organization = mongoose.model('Organization'),
     agent = request.agent(app);
 
-describe('Organization Crud Test', function(){
+describe('Organization CRUD Test', function(){
     var organizationPost;
     var organizationPut;
     var organizationPatch;
@@ -13,6 +13,8 @@ describe('Organization Crud Test', function(){
     var servicePost;
 
     before(function(done){
+        // initial mongodb clean up
+        Organization.remove({}).exec();
 
         // todo: remove to the data.json file
         servicePost = {
@@ -34,7 +36,6 @@ describe('Organization Crud Test', function(){
 
         // todo: remove to the data.json file
         organizationPost = {
-            m_id: 0,
             name:'Nicasa',
             description:'Mental Heath Services Dupage County',
             web_url: "http://www.mentalheath.org/",
@@ -46,8 +47,7 @@ describe('Organization Crud Test', function(){
 
         // todo: remove to the data.json file
         organizationPut = {
-            m_id: 0,
-            name:'Nicasa',
+            name:'Nicasa Behavior Service Inc',
             description:'Mental Heath Services Dupage & Cook County'
         };
 
@@ -62,9 +62,7 @@ describe('Organization Crud Test', function(){
             .expect(201)
             .end(function(err, results){
                 if (err) return console.error('POST /organization (%s)', err);
-                // console.log(results.body);
 
-                results.body.m_id.should.equal(0);
                 results.body.should.have.property('description').which.is.a.String();
                 results.body.should.have.property('_id');
                 results.body.should.have.property('web_url').which.is.a.String();
@@ -76,6 +74,7 @@ describe('Organization Crud Test', function(){
                 results.body.should.have.property('tags').which.is.a.Array();
                 organizationId = results.body._id;
 
+                // console.log(results.body);
                 done();
             })
     })
@@ -87,8 +86,8 @@ describe('Organization Crud Test', function(){
             .expect(200)
             .end(function(err, results){
                 if (err) return console.error('GET /organizations/:organizationId (%s)', err);
+
                 results.body._id.should.be.equal(organizationId);
-                results.body.m_id.should.equal(0);
                 results.body.should.have.property('name').which.is.a.String();
                 results.body.name.should.equal(organizationPost.name);
                 results.body.should.have.property('description').which.is.a.String();
@@ -97,40 +96,51 @@ describe('Organization Crud Test', function(){
                 results.body.should.have.property('web_url').which.is.a.String();
                 results.body.should.have.property('services').which.is.a.Array();
                 results.body.should.have.property('tags').which.is.a.Array();
+
                 // console.log(results.body);
                 done();
             })
     })
 
-    // it('GET /organizations/?genre=', function(done) {
-    //     agent.get('/api/organizations/?genre=Fiction')
-    //         .expect(200)
-    //         .end(function(err, results) {
-    //             // todo: Update the inline json for Organization Schema
-    //             results.body[0].genre.should.equal('Fiction');
-    //             results.body[0].title.should.equal('New Book');
-    //             results.body[0].author.should.equal('Noi');
+    it('GET /organizations/?name=', function(done) {
+        agent.get('/api/organizations/?name=Nicasa')
+            .expect(200)
+            .end(function(err, results) {
+                if (err) return console.error('GET /organizations/?name=Nicasa (%s)', err);
 
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
+                // results.body._id.should.be.equal(organizationId);
 
-    // it('PUT /organizations/:organizationId', function(done) {
-    //     console.log('PUT: '+ organizationId)
+                results.body[0].should.have.property('name').which.is.a.String();
+                results.body[0].name.should.equal(organizationPost.name);
+                results.body[0].should.have.property('description').which.is.a.String();
+                results.body[0].description.should.equal(organizationPost.description);
+                results.body[0].should.have.property('_id');
+                results.body[0].should.have.property('web_url').which.is.a.String();
+                results.body[0].should.have.property('services').which.is.a.Array();
+                results.body[0].should.have.property('tags').which.is.a.Array();
 
-    //     agent.put('/api/organizations/' + organizationId)
-    //         .send(organizationPut)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             // todo: Update the inline json for Organization Schema
-    //             results.body.genre.should.equal('Science Fiction');
-    //             results.body.title.should.equal('New Book');
-    //             results.body.author.should.equal('John Doe');
+                // console.log(results.body);
+                done();
+            })
+    })
 
-    //             done();
-    //         })
-    // })
+    it('PUT /organizations/:organizationId', function(done) {
+        // console.log('PUT: '+ organizationId)
+        if (!organizationId) return console.error("organizationId is %s", "Empty or Nil");
+
+        agent.put('/api/organizations/' + organizationId)
+            .send(organizationPut)
+            .expect(200)
+            .end(function(err, results){
+                if (err) return console.error('PUT /organizations/:organizationId (%s)', err);
+
+                results.body._id.should.be.equal(organizationId);
+                results.body.name.should.equal(organizationPut.name);
+                results.body.description.should.equal(organizationPut.description);
+
+                done();
+            })
+    })
 
     // it('PATCH /organizations/:organizationId', function(done) {
     //     console.log('PATCH: '+ organizationId)
@@ -151,7 +161,7 @@ describe('Organization Crud Test', function(){
     // })
 
     it('DELETE /organizations/:organizationId', function(done) {
-        console.log('DELETE: '+ organizationId)
+        // console.log('DELETE: '+ organizationId)
 
         agent.del('/api/organizations/' + organizationId)
             .expect(200)
@@ -162,11 +172,6 @@ describe('Organization Crud Test', function(){
                 done();
             })
     })
-
-    // afterEach(function(done){
-    //   Book.remove().exec();
-    //   done();
-    // })
 
     after(function(done) {
         Organization.remove({}).exec();

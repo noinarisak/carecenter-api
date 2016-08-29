@@ -1,0 +1,21 @@
+{
+    "name": "Nicasa",
+    "description": "Mental Heath Services Dupage County",
+    "web_url": "http://www.mentalheath.org/",
+    "services": [ { "name": "Service 1",
+        "description": "Service description",
+        "lat": "",
+        "long": "",
+        "contact_email": "me@email.com",
+        "contact_phone": "773-124-5678",
+        "street_address1": "1234 N. Somewhere Ave.",
+        "street_address2": "",
+        "street_cityprovince": "Chicago",
+        "street_state": "ILL",
+        "street_postalcode": "60626",
+        "eligibility_desc": "Must be 18+",
+        "cost_desc": "Free",
+        "web_url": "http://wwww.google.com" }
+        ],
+    "tags": ["clothing", "food-services"]
+}

@@ -24,6 +24,10 @@ var serviceController = function(Service) {
         if (req.query.name) {
             query.name = req.query.name;
         }
+        // else if {
+        //     query.tag = req.query.tag;
+        // }
+
         Service.find(query, function(err, services){
             if (err) {
                 res.status(500).send(err);
