@@ -44,8 +44,10 @@ app.use('/api/books', bookRouter);
 var Organization = require('./models/organizationModel');
 var Service = require('./models/serviceModel');
 var organizationRouter = require('./routes/organizationRoutes')(Organization, Service);
-app.use('/api/organizations', organizationRouter);
+var serviceRouter = require('./routes/serviceRoutes')(Service);
 
+app.use('/api/organizations', organizationRouter);
+app.use('/api/service', serviceRouter);
 
 /**
  * Handle the root GET call

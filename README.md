@@ -62,10 +62,10 @@ Debugging in c9.io with this project. Since we are not using the default templat
 1. In workspace menu, Run > Run Configuration > New Run Configuration. This open a 'New' run tab typically below your workspace.
 2. On Run tab, enter the following:
    - **"Run Config Name"**, enter `Express`
-   - **"Command"**, enter `app.js`
-   - **"Runner:Auto"** dropdown, select `Runner:Nodejs (default)`
-3. Place a breakpoint on js file.
-4. Use browser or POSTMAN to execute the api endpoint.
+   - **"Command"**, enter `./tests/*.js`
+   - **"Runner:Auto"** dropdown, select `Runner:Mocha`
+3. Place a breakpoint on Mocha js file.
+4. In Runner panel, click on the Run button and profit!
 
 ### Issues with `gulp test`
 
@@ -73,6 +73,14 @@ If `gulp test` silently fails, it means another gulp process is running and it h
 ```
 $ kill -9 $(ps -a | grep 'gulp' | awk '{print $1}')
 ```
+
+### Debugging Mocha scripts in c9.io
+1. In workspace menu, Run > Run Configuration > New Run Configuration. This open a 'New' run tab typically below your workspace.
+2. On Run tab, enter the following:
+   - **"Run Config Name"**, enter `Mocha`
+   - **"Command"**, enter `app.js`
+   - **"Runner:Auto"** dropdown, select `Runner:Nodejs (default)`
+3. Place a breakpoint on js file.
 
 ### Simpler git/github versioning model approach to follow.
 1. Read jbenet [gist](https://gist.github.com/jbenet/ee6c9ac48068889b0912).
