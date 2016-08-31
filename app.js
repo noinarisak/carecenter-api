@@ -9,7 +9,7 @@ var express = require('express'),
 dotenv.load({ path: '.env.api' });
 
 /**
- * Connect to MongoDB 
+ * Connect to MongoDB
  */
 var db;
 if (process.env.ENV == 'Test') {
@@ -18,6 +18,8 @@ if (process.env.ENV == 'Test') {
 else {
     db = mongoose.connect(process.env.MONGODB_URI);
 }
+// Use native promises
+mongoose.Promise = global.Promise;
 mongoose.connection.on('error', () => {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
@@ -42,17 +44,19 @@ app.use('/api/books', bookRouter);
 var Organization = require('./models/organizationModel');
 var Service = require('./models/serviceModel');
 var organizationRouter = require('./routes/organizationRoutes')(Organization, Service);
-app.use('/api/organizations', organizationRouter);
+var serviceRouter = require('./routes/serviceRoutes')(Service);
 
+app.use('/api/organizations', organizationRouter);
+app.use('/api/service', serviceRouter);
 
 /**
  * Handle the root GET call
  */
 app.get('/', function(req, res) {
     var message = { "application" : process.env.APP_NAME,
-                    "version" : process.env.APP_VERSION, 
+                    "version" : process.env.APP_VERSION,
                     "status" : "OK"}
-                    
+
     res.send(200, message);
 });
 

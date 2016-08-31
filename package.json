@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "gulp-env": "^0.4.0",
+    "gulp-plumber": "^1.1.0",
+    "run-sequence": "^1.2.2",
     "supertest": "^1.2.0"
   }
 }
