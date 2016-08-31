@@ -12,7 +12,7 @@ describe('Service CRUD Test', function(){
     var serviceId;
 
     before(function(done){
-        // initial mongo cleanup
+        // initial mongodb cleanup
         Service.remove({}).exec();
 
         // todo: move to data.json file for DRY reasons
@@ -33,18 +33,18 @@ describe('Service CRUD Test', function(){
             web_url: "http://wwww.google.com",
             tags: [ "clothing", "food-service" ]
         };
-        // servicePut = {
-        //     m_id: 0,
-        //     name:'Nicasa',
-        //     description:'Mental Heath Services Dupage & Cook County'};
-        // servicePatch = {enable:false};
+
+        servicePut = {
+            name:'Service 1',
+            description:'Service description was updated'
+        };
+
+        servicePatch = {enabled:false};
 
         done();
     })
 
     it('POST /service', function(done){
-        // console.log(servicePost);
-
         agent.post('/api/service')
             .send(servicePost)
             .expect(201)
@@ -57,7 +57,6 @@ describe('Service CRUD Test', function(){
                 // results.body.should.have.property('tags').which.is.a.Array();
                 serviceId = results.body._id;
 
-                // console.log(results.body);
                 done();
             })
     })
@@ -77,54 +76,53 @@ describe('Service CRUD Test', function(){
                 results.body.description.should.equal(servicePost.description);
                 results.body.should.have.property('_id');
                 results.body.should.have.property('web_url').which.is.a.String();
-                // results.body.should.have.property('tags').which.is.a.Array();
-                // console.log(results.body);
+                results.body.should.have.property('tags').which.is.a.Array();
+
                 done();
             })
     })
 
-    // it('PUT /service/:serviceId', function(done) {
-    //     console.log('PUT: '+ serviceId)
+    it('PUT /service/:serviceId', function(done) {
+        agent.put('/api/service/' + serviceId)
+            .send(servicePut)
+            .expect(200)
+            .end(function(err, results){
+                if (err) return console.error('PUT /service/:serviceId (%s)', err);
 
-    //     agent.put('/api/service/' + serviceId)
-    //         .send(servicePut)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             // todo: Update the inline json for Service Schema
-    //             console.log(servicePost.name)
-    //             results.body.name.should.equal('Service 1');
-    //             // results.body.title.should.equal('New Book');
-    //             // results.body.author.should.equal('John Doe');
+                results.body.name.should.equal(servicePut.name);
+                results.body.description.should.equal(servicePut.description);
+                results.body.should.have.property('_id');
+                results.body.should.have.property('web_url').which.is.a.String();
 
-    //             done();
-    //         })
-    // })
+                done();
+            })
+    })
 
-    // it('PATCH /service/:serviceId', function(done) {
-    //     console.log('PATCH: '+ serviceId)
+    it('PATCH /service/:serviceId', function(done) {
+        agent.patch('/api/service/' + serviceId)
+            .send(servicePatch)
+            .expect(200)
+            .end(function(err, results){
+                if (err) return console.error('PATCH /service/:serviceId (%s)', err);
 
-    //     agent.patch('/api/service/' + serviceId)
-    //         .send(servicePatch)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             // todo: Update the inline json for Service Schema
-    //             results.body.tag.should.equal('Science Fiction');
-    //             results.body.title.should.equal('New Book');
-    //             results.body.author.should.equal('John Doe');
-    //             results.body.read.should.equal(true);
+                results.body.name.should.equal(servicePut.name);
+                results.body.description.should.equal(servicePut.description);
+                results.body.should.have.property('_id');
+                results.body.should.have.property('web_url').which.is.a.String();
+                results.body.enabled.should.equal(servicePatch.enabled);
 
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
+                done();
+            })
+    })
 
     it('DELETE /service/:serviceId', function(done) {
         agent.del('/api/service/' + serviceId)
             .expect(200)
             .end(function(err, results){
+                if (err) return console.error('DELETE /service/:serviceId (%s)', err);
+
                 results.body.message.should.equal('Successful delete');
 
-                // console.log(results.body);
                 done();
             })
     })
@@ -139,6 +137,7 @@ describe('Service CRUD Test', function(){
 describe.skip('Service CRUD Test - Not Implemented', function(){
 
     it('GET /service/?filter={tags=["clothing", "food"]}', function(done) {
+        // Note results.body will be array of Service entities
         // agent.get('/api/service/?tag=Fiction')
         //     .expect(200)
         //     .end(function(err, results) {
@@ -151,6 +150,7 @@ describe.skip('Service CRUD Test - Not Implemented', function(){
     })
 
     it('GET /service/?locate={lat="41.881832",long="-87.623177"}', function(done) {
+        // Note results.body will be array of Service entities
         // agent.get('/api/service/?locate={lat="41.881832",long="-87.623177"}')
         //     .expect(200)
         //     .end(function(err, results) {
@@ -163,6 +163,7 @@ describe.skip('Service CRUD Test - Not Implemented', function(){
     })
 
     it('GET /service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}', function(done) {
+        // Note results.body will be array of Service entities
         // agent.get('/api/service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}')
         //     .expect(200)
         //     .end(function(err, results) {

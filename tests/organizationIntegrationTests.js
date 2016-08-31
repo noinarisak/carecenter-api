@@ -51,7 +51,7 @@ describe('Organization CRUD Test', function(){
             description:'Mental Heath Services Dupage & Cook County'
         };
 
-        organizationPatch = {enable:false};
+        organizationPatch = {enabled:false};
 
         done();
     })
@@ -67,14 +67,10 @@ describe('Organization CRUD Test', function(){
                 results.body.should.have.property('_id');
                 results.body.should.have.property('web_url').which.is.a.String();
                 results.body.should.have.property('services').which.is.a.Array();
-
-                // assert existence for Services object
-                // results.body.services.should.
-
                 results.body.should.have.property('tags').which.is.a.Array();
+
                 organizationId = results.body._id;
 
-                // console.log(results.body);
                 done();
             })
     })
@@ -97,7 +93,6 @@ describe('Organization CRUD Test', function(){
                 results.body.should.have.property('services').which.is.a.Array();
                 results.body.should.have.property('tags').which.is.a.Array();
 
-                // console.log(results.body);
                 done();
             })
     })
@@ -108,8 +103,7 @@ describe('Organization CRUD Test', function(){
             .end(function(err, results) {
                 if (err) return console.error('GET /organizations/?name=Nicasa (%s)', err);
 
-                // results.body._id.should.be.equal(organizationId);
-
+                results.body[0]._id.should.be.equal(organizationId);
                 results.body[0].should.have.property('name').which.is.a.String();
                 results.body[0].name.should.equal(organizationPost.name);
                 results.body[0].should.have.property('description').which.is.a.String();
@@ -119,7 +113,6 @@ describe('Organization CRUD Test', function(){
                 results.body[0].should.have.property('services').which.is.a.Array();
                 results.body[0].should.have.property('tags').which.is.a.Array();
 
-                // console.log(results.body);
                 done();
             })
     })
@@ -142,33 +135,27 @@ describe('Organization CRUD Test', function(){
             })
     })
 
-    // it('PATCH /organizations/:organizationId', function(done) {
-    //     console.log('PATCH: '+ organizationId)
+    it('PATCH /organizations/:organizationId', function(done) {
+        agent.patch('/api/organizations/' + organizationId)
+            .send(organizationPatch)
+            .expect(200)
+            .end(function(err, results){
+                if (err) return console.error('PATCH /organizations/:organizationId (%s)', err);
 
-    //     agent.patch('/api/organizations/' + organizationId)
-    //         .send(organizationPatch)
-    //         .expect(200)
-    //         .end(function(err, results){
-    //             // todo: Update the inline json for Organization Schema
-    //             results.body.genre.should.equal('Science Fiction');
-    //             results.body.title.should.equal('New Book');
-    //             results.body.author.should.equal('John Doe');
-    //             results.body.read.should.equal(true);
+                results.body.enabled.should.equal(organizationPatch.enabled);
 
-    //             // console.log(results.body);
-    //             done();
-    //         })
-    // })
+                done();
+            })
+    })
 
     it('DELETE /organizations/:organizationId', function(done) {
-        // console.log('DELETE: '+ organizationId)
-
         agent.del('/api/organizations/' + organizationId)
             .expect(200)
             .end(function(err, results){
+                if (err) return console.error('DELETE /organizations/:organizationId (%s)', err);
+
                 results.body.message.should.equal('Successful delete');
 
-                // console.log(results.body);
                 done();
             })
     })

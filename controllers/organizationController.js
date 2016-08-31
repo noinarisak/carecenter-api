@@ -21,17 +21,8 @@ var organizationController = function(Organization, Service) {
                     serviceObj.save(function (err){
                         if (err) return console.error(err);
                     });
-                    // console.log(serviceObj);
                 }
             }
-            // console.log("post_organization" + organization);
-
-            // Service
-            // .findOne({ name: 'Service 1' })
-            // .populate('_organization')
-            // .exec(function (err, service) {
-            //     if (err) return console.log(err);
-            // });
 
             res.status(201);
             res.send(organization);
@@ -50,8 +41,6 @@ var organizationController = function(Organization, Service) {
                 res.status(500).send(err);
             }
             else {
-                // console.log("org =" + organizations);
-
                 var returnOrganizations = [];
                 organizations.forEach(function(element, index, array){
                     var newOrganization = element.toJSON();
@@ -105,8 +94,6 @@ var organizationController = function(Organization, Service) {
                 res.status(500).send(err);
             }
             else {
-                // res.status(204).send('Removed');
-
                 var message = { message: 'Successful delete'};
                 res.json(message);
             }
