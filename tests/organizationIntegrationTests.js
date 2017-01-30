@@ -1,11 +1,16 @@
-var should = require('should'),
-    request = require('supertest'),
-    app = require('../app.js'),
-    mongoose = require('mongoose'),
-    Organization = mongoose.model('Organization'),
-    agent = request.agent(app);
+"use strict";
 
-describe('Organization CRUD Test', function(){
+
+var app          = require('../app.js');
+var mongoose     = require('mongoose');
+var request      = require('supertest');
+var should       = require('should');
+
+
+var agent        = request.agent(app);
+var Organization = mongoose.model('Organization');
+
+describe('Organization REST API Test', function(){
     var organizationPost;
     var organizationPut;
     var organizationPatch;
@@ -16,7 +21,7 @@ describe('Organization CRUD Test', function(){
         // initial mongodb clean up
         Organization.remove({}).exec();
 
-        // todo: remove to the data.json file
+        // TODO: remove to the data.json file
         servicePost = {
             name: 'Service 1',
             description: "Service description",
@@ -34,7 +39,7 @@ describe('Organization CRUD Test', function(){
             web_url: "http://wwww.google.com"
         };
 
-        // todo: remove to the data.json file
+        // TODO: remove to the data.json file
         organizationPost = {
             name:'Nicasa',
             description:'Mental Heath Services Dupage County',
@@ -45,7 +50,7 @@ describe('Organization CRUD Test', function(){
 
         organizationPost.services.push(servicePost);
 
-        // todo: remove to the data.json file
+        // TODO: remove to the data.json file
         organizationPut = {
             name:'Nicasa Behavior Service Inc',
             description:'Mental Heath Services Dupage & Cook County'

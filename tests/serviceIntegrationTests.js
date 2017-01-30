@@ -1,11 +1,16 @@
-var should = require('should'),
-    request = require('supertest'),
-    app = require('../app.js'),
-    mongoose = require('mongoose'),
-    Service = mongoose.model('Service'),
-    agent = request.agent(app);
+"use strict";
 
-describe('Service CRUD Test', function(){
+
+var app      = require('../app.js');
+var mongoose = require('mongoose');
+var request  = require('supertest');
+var should   = require('should');
+
+
+var agent    = request.agent(app);
+var Service  = mongoose.model('Service');
+
+describe('Service REST API Test', function(){
     var servicePost;
     var servicePut;
     var servicePatch;
@@ -82,6 +87,15 @@ describe('Service CRUD Test', function(){
             })
     })
 
+    // TODO:
+    it('GET /service/?filter={tags=["clothing", "food"]}');
+
+    // TODO:
+    it('GET /service/?locate={lat="41.881832",long="-87.623177"}');
+
+    // TODO:
+    it('GET /service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}');
+
     it('PUT /service/:serviceId', function(done) {
         agent.put('/api/service/' + serviceId)
             .send(servicePut)
@@ -130,49 +144,6 @@ describe('Service CRUD Test', function(){
     after(function(done) {
         Service.remove({}).exec();
         done();
-    })
-
-});
-
-describe.skip('Service CRUD Test - Not Implemented', function(){
-
-    it('GET /service/?filter={tags=["clothing", "food"]}', function(done) {
-        // Note results.body will be array of Service entities
-        // agent.get('/api/service/?tag=Fiction')
-        //     .expect(200)
-        //     .end(function(err, results) {
-
-        //         // todo: implement assert for filter tags
-
-        //         // console.log(results.body);
-        //         done();
-        //     })
-    })
-
-    it('GET /service/?locate={lat="41.881832",long="-87.623177"}', function(done) {
-        // Note results.body will be array of Service entities
-        // agent.get('/api/service/?locate={lat="41.881832",long="-87.623177"}')
-        //     .expect(200)
-        //     .end(function(err, results) {
-
-        //         // todo: implement assert for locate
-
-        //         // console.log(results.body);
-        //         done();
-        //     })
-    })
-
-    it('GET /service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}', function(done) {
-        // Note results.body will be array of Service entities
-        // agent.get('/api/service/?filter={tags=["clothing", "food"]}&locate={lat="41.881832",long="-87.623177"}')
-        //     .expect(200)
-        //     .end(function(err, results) {
-
-        //         // todo: implement assert for filter tags and locate
-
-        //         // console.log(results.body);
-        //         done();
-        //     })
     })
 
 });
