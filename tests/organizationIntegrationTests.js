@@ -140,6 +140,7 @@ describe('Organization REST API Test', function(){
             })
     })
 
+
     it('PATCH /organizations/:organizationId', function(done) {
         agent.patch('/api/organizations/' + organizationId)
             .send(organizationPatch)
