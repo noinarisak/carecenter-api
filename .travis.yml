@@ -11,7 +11,7 @@ services:
 before_script:
   - npm install -g gulp
   - "cp .env.example .env.api"
-  - sleep 15
+  - sleep 5
 script:
   - "gulp test"
 after_success:
