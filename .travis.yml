@@ -2,6 +2,7 @@
 branches:
   only:
   - master
+  - develop
   - /^feature/\.*$/
 language: node_js
 node_js:
@@ -11,7 +12,7 @@ services:
 before_script:
   - npm install -g gulp
   - "cp .env.example .env.api"
-  - sleep 5
+  - sleep 15
 script:
   - "gulp test"
 after_success:
