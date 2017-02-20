@@ -2,7 +2,7 @@
 branches:
   only:
   - master
-  - /^feature/\.*$/
+  - /^feature\/.*$/
 language: node_js
 node_js:
   - "4.4.5"
