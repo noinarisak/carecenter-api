@@ -9,9 +9,11 @@ node_js:
   - "4.4.5"
 services:
   - mongodb
+before_install:
+  # TimeZone for America/Chicago
+  - export LANG=en_US.UTF-6
+  - export LC_ALL=en_US.UTF-6
 before_script:
-  - export TZ=America/Chicago
-  - echo $(date -u "+%Y-%m-%d")
   - npm install -g gulp
   - "cp .env.example .env.api"
   - sleep 5
