@@ -9,6 +9,8 @@ node_js:
 services:
   - mongodb
 before_script:
+  - TZ=America/Chicago
+  - date
   - npm install -g gulp
   - "cp .env.example .env.api"
   - sleep 10
