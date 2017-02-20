@@ -9,11 +9,11 @@ node_js:
 services:
   - mongodb
 before_script:
-  - TZ=America/Chicago
-  - date
+  - export TZ=America/Chicago
+  - echo date
   - npm install -g gulp
   - "cp .env.example .env.api"
-  - sleep 10
+  - sleep 5
 script:
   - "gulp test"
 after_success:
